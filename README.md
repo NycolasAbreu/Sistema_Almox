@@ -1,3 +1,14 @@
+Nycolas Coelho de Abreu, IFSC - Florianópolis 
+
+# Sistema Almoxarifado
+
+## SUMÁRIO
+
+1. Sistema Almox
+2. Problema
+3. Objetivo
+4. Funcionalidades
+
 # Sistema Almox
 
 Sistema de gestão para o almoxarifado do IFSC.
@@ -19,3 +30,4 @@ Sistema de gestão para o almoxarifado do IFSC.
 - Adicionar usuários(alunos), armazenar dados de saída e entrada de itens em seu cadastro.
 - Cadastro de itens, para um melhor controle interno de estoque.
 - Balanço de quantidade mínima para itens críticos.
+
