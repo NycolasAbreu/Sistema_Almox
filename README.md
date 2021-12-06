@@ -9,13 +9,13 @@ Nycolas Coelho de Abreu, IFSC - Florianópolis
 3. Objetivo
 4. Funcionalidades
 
-# Sistema Almox
+# Sistema Almoxarifado
 
-Sistema de gestão para o almoxarifado do IFSC.
+O objetivo deste trabalho será o desenvolvimento de um sistema de gestão para o almoxarifado do IFSC.
 
 ## Problema
 
-- Falta de organização e praticidade no sistema de gestão do almoxarifado do DAELN.
+- Falta de organização e praticidade no sistema de gestão do almoxarifado existente do DAELN.
 - É utilizado planilhas simples de Excel para fazer o controle de centenas de alunos e milhares de itens.
 - Alunos não sabem o que estão devendo para o almoxarifado.
 
@@ -30,4 +30,14 @@ Sistema de gestão para o almoxarifado do IFSC.
 - Adicionar usuários(alunos), armazenar dados de saída e entrada de itens em seu cadastro.
 - Cadastro de itens, para um melhor controle interno de estoque.
 - Balanço de quantidade mínima para itens críticos.
+- Interfaçe amigável.
 
+## TODO
+
+- [x] Publicar no github.
+- [x] Adicionar README.
+- [ ] Receber feedback dos técnicos do almoxarifado.
+- [ ] Tela de login.
+- [ ] Tela principal.
+- [ ] Clase usuário.
+- [ ] Clase item.
