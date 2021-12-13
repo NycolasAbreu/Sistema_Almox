@@ -45,7 +45,7 @@ O objetivo deste trabalho será o desenvolvimento de um sistema de gestão para 
 ## Feedback dos técnicos
 
 Versão 1:
-- Criar BD para os componentes: básicos: componente, tipo, valor, descrição, quantidade.
+- Criar BD para os componentes: básicos: local, componente, tipo, valor, descrição, quantidade.
 - Criar BD para os usuários: matrícula, nome e curso.
 - Criar interface gráfica.
 
