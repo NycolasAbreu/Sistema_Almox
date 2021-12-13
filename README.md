@@ -70,3 +70,8 @@ c) Tipos para agrupamento dos componentes:
 - Tiristor: DIAC BT TIC Outros
 - Chaves: Alavanca H-H Push-Button Táctil
 - Miscelâneos: Barra pino Borne banana Cristal Optoacoplador Pino banana Relé Soquete barra Soquete CI
+
+## UML
+<p align="center">
+<img src="UML.png" alt="UML" width="600"/>
+</p>
