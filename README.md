@@ -41,6 +41,7 @@ O objetivo deste trabalho será o desenvolvimento de um sistema de gestão para 
 - [ ] Tela principal.
 - [ ] Clase usuário.
 - [ ] Clase item.
+- [ ] Banco de dados para empréstimo.
 
 ## Feedback dos técnicos
 
