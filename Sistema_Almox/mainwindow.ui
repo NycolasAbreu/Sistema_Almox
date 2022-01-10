@@ -13,9 +13,110 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>90</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">.QPushButton { 
+background-color:#74ad5a;
+border:1px solid#3b6e22 ; 
+color:#ffffff; 
+font-family:Arial;
+font-size:13px;
+font-weight:bold; 
+padding:6px 12px; 
+text-decoration:none; } 
+
+.QPushButton:hover { 
+background-color:#68a54b; } 
+
+.QPushButton:active {
+ position:relative;
+ top:1px; } 
+
+.QPushButton:pressed {
+ background-color:#4b7339;
+ } </string>
+    </property>
+    <property name="text">
+     <string>Nova venda</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>240</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSistema">
+    <property name="title">
+     <string>Gestão</string>
+    </property>
+    <addaction name="actionEstoque"/>
+    <addaction name="actionVenda"/>
+    <addaction name="actionColaboradores"/>
+   </widget>
+   <widget class="QMenu" name="menuSistema_2">
+    <property name="title">
+     <string>Sistema</string>
+    </property>
+    <addaction name="actionSair"/>
+    <addaction name="separator"/>
+    <addaction name="actionSobre"/>
+   </widget>
+   <addaction name="menuSistema"/>
+   <addaction name="menuSistema_2"/>
+  </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionEstoque">
+   <property name="text">
+    <string>Estoque</string>
+   </property>
+  </action>
+  <action name="actionVenda">
+   <property name="text">
+    <string>Venda</string>
+   </property>
+  </action>
+  <action name="actionColaboradores">
+   <property name="text">
+    <string>Colaboradores</string>
+   </property>
+  </action>
+  <action name="actionSair">
+   <property name="text">
+    <string>Sair</string>
+   </property>
+  </action>
+  <action name="actionSobre">
+   <property name="text">
+    <string>Sobre</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
