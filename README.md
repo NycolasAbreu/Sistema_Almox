@@ -37,7 +37,7 @@ O objetivo deste trabalho será o desenvolvimento de um sistema de gestão para 
 - [x] Publicar no github.
 - [x] Adicionar README.
 - [x] Receber feedback dos técnicos do almoxarifado.
-- [ ] Tela de login.
+- [x] Tela de login.
 - [ ] Tela principal.
 - [ ] Clase usuário.
 - [ ] Clase item.
