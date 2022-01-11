@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtSql>
 #include <QMessageBox>
+
+#include "database.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,9 +18,6 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    QSqlDatabase dataBase = QSqlDatabase::addDatabase("QSQLITE");
-
-    bool log;
     QString colabName;
 
 private:
