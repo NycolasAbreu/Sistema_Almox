@@ -1,9 +1,4 @@
 #include "database.h"
-#include <QtDebug>
-#include <unistd.h>
-#include <string>
-#include <fstream>
-
 
 DataBase::DataBase(QString name) : name(name)
 {

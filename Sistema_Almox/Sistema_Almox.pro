@@ -12,12 +12,14 @@ SOURCES += \
     database.cpp \
     login.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    message.cpp
 
 HEADERS += \
     database.h \
     login.h \
-    mainwindow.h
+    mainwindow.h \
+    message.h
 
 FORMS += \
     login.ui \

@@ -6,6 +6,11 @@ login::login(QWidget *parent) :
     ui(new Ui::login)
 {
     ui->setupUi(this);
+    this->setFixedSize(311,198);
+    this->setWindowTitle("Login");
+
+    const QIcon icon(":/new/Icons/icons/ifsc.png");
+    this->setWindowIcon(icon);
 }
 
 login::~login()
@@ -18,38 +23,49 @@ void login::on_pushButton_Login_clicked()
     DataBase db("DataBase.db");
 
     if(!db.Open()){
-        QMessageBox::warning(this,"error","Erro ao abrir banco de dados. Conferir se o arquivo DataBase.db está na pasta");
+        Message::WarningMessage("Erro ao abrir banco de dados. Conferir se o arquivo DataBase.db está na pasta");
         return;
     }
 
-    QString username;
-    QString password;
-
-    username = ui->lineEdit_Username->text();
-    password = ui->lineEdit_Password->text();
-
-    QSqlQuery query;
-
-    if(query.exec("select * from Login where usernameColab='"+username+"' and passwordColab='"+password+"'")){
-        if(query.next()){
-            logged = true;
-            close();
-        }
-        else{
-            QMessageBox::warning(this,"error","Login ou senha errado");
-        }
-    }
-        else{
-            ui->lineEdit_Password->clear();
-            ui->lineEdit_Username->clear();
-            ui->lineEdit_Username->setFocus();
-        }
+    this->CheckLogin();
 
     db.Close();
 }
 
 void login::on_pushButton_Exit_clicked()
 {
-    close();
+    this->close();
 }
 
+void login::CheckLogin()
+{
+    QString username;
+    QString password;
+
+    username = ui->lineEdit_Username->text();
+    password = ui->lineEdit_Password->text();
+
+    this->CheckDataBase(username, password);
+}
+
+void login::CheckDataBase(QString username,QString password)
+{
+    QSqlQuery query;
+
+    if(query.exec("select * from Login where usernameColab='"+username+"' and passwordColab='"+password+"'")){
+        if(query.next()){
+            logged = true;
+            this->close();
+        }
+        else{
+            Message::WarningMessage("Login ou senha errado");
+        }
+    }
+    this->CleanLines();
+}
+
+void login::CleanLines(){
+    ui->lineEdit_Password->clear();
+    ui->lineEdit_Username->clear();
+    ui->lineEdit_Username->setFocus();
+}

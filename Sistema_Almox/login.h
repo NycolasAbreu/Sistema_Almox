@@ -7,6 +7,7 @@
 
 #include "database.h"
 #include "mainwindow.h"
+#include "message.h"
 
 namespace Ui {
 class login;
@@ -24,8 +25,11 @@ public:
 
 private slots:
     void on_pushButton_Login_clicked();
-
     void on_pushButton_Exit_clicked();
+
+    void CheckLogin();
+    void CheckDataBase(QString username,QString password);
+    void CleanLines();
 
 private:
     Ui::login *ui;

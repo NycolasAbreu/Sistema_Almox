@@ -1,3 +1,5 @@
 <RCC>
-    <qresource prefix="/new/Icons"/>
+    <qresource prefix="/new/Icons">
+        <file>icons/ifsc.png</file>
+    </qresource>
 </RCC>

@@ -4,6 +4,8 @@
 #include <QtSql>
 #include <QMessageBox>
 #include <QFile>
+#include <string>
+#include <fstream>
 
 #include "mainwindow.h"
 

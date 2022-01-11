@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include "login.h"
-#include "database.h"
-//#include "uimanager.h"
 
 #include <QApplication>
 
