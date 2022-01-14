@@ -38,10 +38,12 @@ O objetivo deste trabalho será o desenvolvimento de um sistema de gestão para 
 - [x] Adicionar README.
 - [x] Receber feedback dos técnicos do almoxarifado.
 - [x] Tela de login.
+- [x] Banco de dados para componentes.
+- [x] Banco de dados para alunos.
+- [ ] Banco de dados para empréstimo.
 - [ ] Tela principal.
 - [ ] Clase usuário.
 - [ ] Clase item.
-- [ ] Banco de dados para empréstimo.
 
 ## Feedback dos técnicos
 
