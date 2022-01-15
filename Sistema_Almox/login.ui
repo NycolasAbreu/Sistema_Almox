@@ -381,9 +381,9 @@ background-color:#68a54b; }
              <colorrole role="PlaceholderText">
               <brush brushstyle="NoBrush">
                <color alpha="128">
-                <red>208</red>
-                <green>208</green>
-                <blue>208</blue>
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
                </color>
               </brush>
              </colorrole>
@@ -511,9 +511,9 @@ background-color:#68a54b; }
              <colorrole role="PlaceholderText">
               <brush brushstyle="NoBrush">
                <color alpha="128">
-                <red>208</red>
-                <green>208</green>
-                <blue>208</blue>
+                <red>255</red>
+                <green>255</green>
+                <blue>255</blue>
                </color>
               </brush>
              </colorrole>
@@ -647,7 +647,7 @@ background-color:#68a54b; }
    </property>
    <property name="styleSheet">
     <string notr="true">
-image: url(:/new/Icons/icons/ifsc.png);</string>
+image: url(:/new/Icons/Icons/ifsc.png);</string>
    </property>
    <property name="text">
     <string/>

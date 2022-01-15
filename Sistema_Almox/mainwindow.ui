@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>891</width>
-    <height>599</height>
+    <width>1225</width>
+    <height>673</height>
    </rect>
   </property>
   <property name="palette">
@@ -456,18 +456,27 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="styleSheet">
        <string notr="true">background-color: rgb(225, 225, 225);
 font: 10pt &quot;Arial&quot;;
 color: rgb(0, 0, 0);</string>
       </property>
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tabLoan">
+      <property name="movable">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="tabInventory">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -676,20 +685,105 @@ color: rgb(0, 0, 0);</string>
        <property name="styleSheet">
         <string notr="true"/>
        </property>
-       <attribute name="title">
-        <string>Empréstimo</string>
+       <attribute name="icon">
+        <iconset resource="Resources.qrc">
+         <normaloff>:/new/Icons/Icons/shipping.png</normaloff>:/new/Icons/Icons/shipping.png</iconset>
        </attribute>
-       <widget class="QPushButton" name="pushButton">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>60</y>
-          <width>101</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">.QPushButton { 
+       <attribute name="title">
+        <string>Estoque</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <widget class="QTableWidget" name="tableWidget"/>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_2">
+              <item>
+               <widget class="QGroupBox" name="groupBox">
+                <property name="title">
+                 <string>Componente (Nome)</string>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QGroupBox" name="groupBox_2">
+                <property name="title">
+                 <string>Valor</string>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_2">
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_2"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_3">
+              <property name="title">
+               <string>Quantidade</string>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
+               <item>
+                <widget class="QLineEdit" name="lineEdit_3"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <widget class="QGroupBox" name="groupBox_4">
+                <property name="title">
+                 <string>Tipo</string>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_4"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_5">
+              <property name="title">
+               <string>Local</string>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <widget class="QLineEdit" name="lineEdit_5"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_6">
+              <property name="title">
+               <string>Descrição</string>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_6">
+               <item>
+                <widget class="QLineEdit" name="lineEdit_6"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_2">
+              <property name="styleSheet">
+               <string notr="true">.QPushButton { 
 background-color:#74ad5a;
 border:1px solid#3b6e22 ; 
 color:#ffffff; 
@@ -709,18 +803,64 @@ background-color:#68a54b; }
 .QPushButton:pressed {
  background-color:#4b7339;
  } </string>
-        </property>
-        <property name="text">
-         <string>Nova venda</string>
-        </property>
-       </widget>
+              </property>
+              <property name="text">
+               <string>Adicionar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton">
+              <property name="autoFillBackground">
+               <bool>false</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">.QPushButton { 
+background-color:#cc4245;
+border:1px solid#3b6e22 ; 
+color:#ffffff; 
+font-family:Arial;
+font-size:13px;
+font-weight:bold; 
+padding:6px 12px; 
+text-decoration:none; } 
+
+.QPushButton:hover { 
+background-color:#a1343c; } 
+
+.QPushButton:active {
+ position:relative;
+ top:1px; } 
+
+.QPushButton:pressed {
+ background-color:#702427;
+ } </string>
+              </property>
+              <property name="text">
+               <string>Remover</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
-      <widget class="QWidget" name="tabInventory">
+      <widget class="QWidget" name="tabLoan">
+       <attribute name="icon">
+        <iconset resource="Resources.qrc">
+         <normaloff>:/new/Icons/Icons/emprestar.png</normaloff>:/new/Icons/Icons/emprestar.png</iconset>
+       </attribute>
        <attribute name="title">
-        <string>Estoque</string>
+        <string>Empréstimo</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tabStudent">
+       <attribute name="icon">
+        <iconset resource="Resources.qrc">
+         <normaloff>:/new/Icons/Icons/people.png</normaloff>:/new/Icons/Icons/people.png</iconset>
+       </attribute>
        <attribute name="title">
         <string>Alunos</string>
        </attribute>
@@ -734,7 +874,7 @@ background-color:#68a54b; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>891</width>
+     <width>1225</width>
      <height>20</height>
     </rect>
    </property>
@@ -742,9 +882,9 @@ background-color:#68a54b; }
     <property name="title">
      <string>Gestão</string>
     </property>
+    <addaction name="actionAlunos"/>
     <addaction name="actionEstoque"/>
-    <addaction name="actionVenda"/>
-    <addaction name="actionColaboradores"/>
+    <addaction name="actionEmprestimos"/>
    </widget>
    <widget class="QMenu" name="menuSistema_2">
     <property name="title">
@@ -758,32 +898,57 @@ background-color:#68a54b; }
    <addaction name="menuSistema_2"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionEstoque">
+  <action name="actionAlunos">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/new/Icons/Icons/people.png</normaloff>:/new/Icons/Icons/people.png</iconset>
+   </property>
    <property name="text">
     <string>Alunos</string>
    </property>
   </action>
-  <action name="actionVenda">
+  <action name="actionEstoque">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/new/Icons/Icons/shipping.png</normaloff>:/new/Icons/Icons/shipping.png</iconset>
+   </property>
    <property name="text">
     <string>Estoque</string>
    </property>
   </action>
-  <action name="actionColaboradores">
+  <action name="actionEmprestimos">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/new/Icons/Icons/emprestar.png</normaloff>:/new/Icons/Icons/emprestar.png</iconset>
+   </property>
    <property name="text">
     <string>Empréstimos</string>
    </property>
+   <property name="toolTip">
+    <string>Emprestimos</string>
+   </property>
   </action>
   <action name="actionSair">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/new/Icons/Icons/close.png</normaloff>:/new/Icons/Icons/close.png</iconset>
+   </property>
    <property name="text">
     <string>Sair</string>
    </property>
   </action>
   <action name="actionSobre">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/new/Icons/Icons/information.png</normaloff>:/new/Icons/Icons/information.png</iconset>
+   </property>
    <property name="text">
     <string>Sobre</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     this->setWindowTitle("Sistema Almox");
-    const QIcon icon(":/new/Icons/icons/ifsc.png");
+    const QIcon icon(":/new/Icons/Icons/ifsc.png");
     this->setWindowIcon(icon);
 }
 

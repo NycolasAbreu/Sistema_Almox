@@ -1,5 +1,10 @@
 <RCC>
     <qresource prefix="/new/Icons">
-        <file>icons/ifsc.png</file>
+        <file>Icons/close.png</file>
+        <file>Icons/emprestar.png</file>
+        <file>Icons/information.png</file>
+        <file>Icons/people.png</file>
+        <file>Icons/shipping.png</file>
+        <file>Icons/ifsc.png</file>
     </qresource>
 </RCC>
