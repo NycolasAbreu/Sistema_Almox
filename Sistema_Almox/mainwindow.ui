@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1225</width>
-    <height>673</height>
+    <width>1104</width>
+    <height>704</height>
    </rect>
   </property>
   <property name="palette">
@@ -456,8 +456,8 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
+   <layout class="QHBoxLayout" name="horizontalLayout_10">
+    <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="styleSheet">
        <string notr="true">background-color: rgb(225, 225, 225);
@@ -692,130 +692,362 @@ color: rgb(0, 0, 0);</string>
        <attribute name="title">
         <string>Estoque</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_9">
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_8">
+          <property name="styleSheet">
+           <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+          </property>
+          <property name="title">
+           <string>Filtrar</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <item>
+              <widget class="QLineEdit" name="lineEdit_7"/>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_3">
+               <property name="styleSheet">
+                <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+               </property>
+               <property name="text">
+                <string>PushButton</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="4,1">
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
           <item>
            <widget class="QTableWidget" name="tableWidget"/>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_3">
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
             <item>
-             <layout class="QVBoxLayout" name="verticalLayout_2">
-              <item>
-               <widget class="QGroupBox" name="groupBox">
-                <property name="title">
-                 <string>Componente (Nome)</string>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout">
-                 <item>
-                  <widget class="QLineEdit" name="lineEdit"/>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item>
-               <widget class="QGroupBox" name="groupBox_2">
-                <property name="title">
-                 <string>Valor</string>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_2">
-                 <item>
-                  <widget class="QLineEdit" name="lineEdit_2"/>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <widget class="QGroupBox" name="groupBox_3">
-              <property name="title">
-               <string>Quantidade</string>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_3">
-               <item>
-                <widget class="QLineEdit" name="lineEdit_3"/>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_7">
-              <item>
-               <widget class="QGroupBox" name="groupBox_4">
-                <property name="title">
-                 <string>Tipo</string>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_4">
-                 <item>
-                  <widget class="QLineEdit" name="lineEdit_4"/>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <widget class="QGroupBox" name="groupBox_5">
-              <property name="title">
-               <string>Local</string>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_5">
-               <item>
-                <widget class="QLineEdit" name="lineEdit_5"/>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QGroupBox" name="groupBox_6">
-              <property name="title">
-               <string>Descrição</string>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_6">
-               <item>
-                <widget class="QLineEdit" name="lineEdit_6"/>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_2">
-              <property name="styleSheet">
-               <string notr="true">.QPushButton { 
-background-color:#74ad5a;
-border:1px solid#3b6e22 ; 
-color:#ffffff; 
-font-family:Arial;
-font-size:13px;
-font-weight:bold; 
-padding:6px 12px; 
-text-decoration:none; } 
-
-.QPushButton:hover { 
-background-color:#68a54b; } 
-
-.QPushButton:active {
- position:relative;
- top:1px; } 
-
-.QPushButton:pressed {
- background-color:#4b7339;
- } </string>
-              </property>
-              <property name="text">
-               <string>Adicionar</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton">
-              <property name="autoFillBackground">
-               <bool>false</bool>
+             <widget class="QGroupBox" name="groupBox_9">
+              <property name="font">
+               <font>
+                <family>MS Shell Dlg 2</family>
+                <pointsize>12</pointsize>
+                <weight>9</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">.QPushButton { 
+               <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
+              <property name="title">
+               <string>Adicionar ou remover</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_6">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout">
+                 <item>
+                  <widget class="QGroupBox" name="groupBox">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Componente (Nome)</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout">
+                    <item>
+                     <widget class="QComboBox" name="comboBox_3">
+                      <item>
+                       <property name="text">
+                        <string>Resistor</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Capacitor</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Diodo</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>LED</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>CI</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Transistor</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Indutor</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Tiristor</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Chaves</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Miscelâneos</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_2">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Valor</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,1,1">
+                    <property name="sizeConstraint">
+                     <enum>QLayout::SetDefaultConstraint</enum>
+                    </property>
+                    <item>
+                     <widget class="QLineEdit" name="lineEdit_2"/>
+                    </item>
+                    <item>
+                     <widget class="QComboBox" name="comboBox">
+                      <item>
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>p</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>n</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>u</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>m</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>k</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>M</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>G</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>T</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QComboBox" name="comboBox_2">
+                      <item>
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Ω</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>V</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>A</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>F</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>H</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>W</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Hz</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Var</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>C</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_8">
+                   <item>
+                    <widget class="QGroupBox" name="groupBox_3">
+                     <property name="styleSheet">
+                      <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                     </property>
+                     <property name="title">
+                      <string>Quantidade</string>
+                     </property>
+                     <layout class="QHBoxLayout" name="horizontalLayout_3">
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_3"/>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QGroupBox" name="groupBox_7">
+                     <property name="styleSheet">
+                      <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                     </property>
+                     <property name="title">
+                      <string>Quantidade mín.</string>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_3">
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit"/>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_4">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Tipo</string>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_4">
+                    <item>
+                     <widget class="QLineEdit" name="lineEdit_4"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_5">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Local</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_5">
+                    <item>
+                     <widget class="QLineEdit" name="lineEdit_5"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_6">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Descrição</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_6">
+                    <item>
+                     <widget class="QLineEdit" name="lineEdit_6"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QPushButton" name="pushButton">
+                <property name="autoFillBackground">
+                 <bool>false</bool>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">.QPushButton { 
 background-color:#cc4245;
 border:1px solid#3b6e22 ; 
 color:#ffffff; 
@@ -835,11 +1067,58 @@ background-color:#a1343c; }
 .QPushButton:pressed {
  background-color:#702427;
  } </string>
+                </property>
+                <property name="text">
+                 <string>Remover</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_2">
+                <property name="styleSheet">
+                 <string notr="true">.QPushButton { 
+background-color:#74ad5a;
+border:1px solid#3b6e22 ; 
+color:#ffffff; 
+font-family:Arial;
+font-size:13px;
+font-weight:bold; 
+padding:6px 12px; 
+text-decoration:none; } 
+
+.QPushButton:hover { 
+background-color:#68a54b; } 
+
+.QPushButton:active {
+ position:relative;
+ top:1px; } 
+
+.QPushButton:pressed {
+ background-color:#4b7339;
+ } </string>
+                </property>
+                <property name="text">
+                 <string>Adicionar</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
               </property>
-              <property name="text">
-               <string>Remover</string>
+              <property name="sizeType">
+               <enum>QSizePolicy::Expanding</enum>
               </property>
-             </widget>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
             </item>
            </layout>
           </item>
@@ -874,7 +1153,7 @@ background-color:#a1343c; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1225</width>
+     <width>1104</width>
      <height>20</height>
     </rect>
    </property>
