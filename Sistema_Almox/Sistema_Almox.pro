@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     database.cpp \
+    inventory.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     database.h \
+    inventory.h \
     login.h \
     mainwindow.h \
     message.h

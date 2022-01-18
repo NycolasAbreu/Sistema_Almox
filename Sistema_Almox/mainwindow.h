@@ -6,10 +6,13 @@
 
 #include "database.h"
 #include "message.h"
+#include "inventory.h"
 
 namespace Ui {
 class MainWindow;
 }
+
+class Inventory;
 
 class MainWindow : public QMainWindow
 {
@@ -24,23 +27,11 @@ private slots:
     void on_pushButtonInvAdd_clicked();
     void on_pushButtonInvFilter_clicked();
     void on_pushButtonInvRemove_clicked();
-    void CleanLines();
-    void GetValues();
+    void CleanInvLines();
+    void SetInvValues(Inventory& inv);
 
 private:
     Ui::MainWindow *ui;
-
-//------------------------------------------Inventory------------------------------------------
-    int invValue;
-    int invQuantity;
-    int invMinQuantity;
-    QString invFilter;
-    QString invName;
-    QString invType;
-    QString invLocal;
-    QString invDescription;
-    QString invValueMagnitude;
-    QString invValueType;
 
 };
 

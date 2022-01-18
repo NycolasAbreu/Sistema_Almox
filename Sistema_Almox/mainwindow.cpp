@@ -22,27 +22,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButtonInvAdd_clicked()
 {
-    this->GetValues();
+    Inventory inv;
 
-    QSqlQuery query;
+    this->SetInvValues(inv);
 
-    query.prepare("INSERT INTO Inventory (nameItem,valueItem,quantityItem,minQuantityItem,typeItem,localItem,descriptionItem)"
-                  "VALUES (:nameItem, :valueItem, :quantityItem, :minQuantityItem, :typeItem, :localItem, :descriptionItem)");
+    inv.SaveComponent(inv);
 
-    query.bindValue(":nameItem", invName);
-    query.bindValue(":valueItem", QString::number(invValue) + invValueMagnitude + invValueType);
-    query.bindValue(":quantityItem", QString::number(invQuantity));
-    query.bindValue(":minQuantityItem", QString::number(invMinQuantity));
-    query.bindValue(":typeItem", invType);
-    query.bindValue(":localItem", invLocal);
-    query.bindValue(":descriptionItem", invDescription);
-
-    if(!query.exec())
-    {
-        Message::WarningMessage("Erro na conexão com o banco de dados");
-    }
-
-    this->CleanLines();
+    this->CleanInvLines();
 }
 
 void MainWindow::on_pushButtonInvRemove_clicked()
@@ -55,7 +41,7 @@ void MainWindow::on_pushButtonInvFilter_clicked()
 
 }
 
-void MainWindow::CleanLines()
+void MainWindow::CleanInvLines()
 {
     ui->lineEditInvValue->clear();
     ui->lineEditInvQuantity->clear();
@@ -69,17 +55,17 @@ void MainWindow::CleanLines()
     ui->lineEditInvFilter->setFocus();
 }
 
-void MainWindow::GetValues()
+void MainWindow::SetInvValues(Inventory& inv)
 {
-    invName = ui->comboBoxInvName->currentText();
-    invValue = ui->lineEditInvValue->text().toInt();
-    invValueMagnitude = ui->comboBoxInvValueMagnitude->currentText();
-    invValueType = ui->comboBoxInvValueType->currentText();
-    invQuantity = ui->lineEditInvQuantity->text().toInt();
-    invMinQuantity = ui->lineEditInvMinQuantity->text().toInt();
-    invLocal = ui->lineEditInvLocal->text();
-    invDescription = ui->lineEditInvDescription->text();
-    invType = ui->lineEditInvType->text();
+    inv.SetName(ui->comboBoxInvName->currentText());
+    inv.SetValue(ui->lineEditInvValue->text().toInt());
+    inv.SetValueMagnitute(ui->comboBoxInvValueMagnitude->currentText());
+    inv.SetvalueType(ui->comboBoxInvValueType->currentText());
+    inv.SetQuantity(ui->lineEditInvQuantity->text().toInt());
+    inv.SetMinQuantity(ui->lineEditInvMinQuantity->text().toInt());
+    inv.SetLocal(ui->lineEditInvLocal->text());
+    inv.SetDescription(ui->lineEditInvDescription->text());
+    inv.SetType(ui->lineEditInvType->text());
 }
 
 //--------------------------------------------------------------------------------------------
