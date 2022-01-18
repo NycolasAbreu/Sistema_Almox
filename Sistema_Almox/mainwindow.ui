@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1104</width>
-    <height>704</height>
+    <height>721</height>
    </rect>
   </property>
   <property name="palette">
@@ -705,15 +705,53 @@ color: rgb(0, 0, 0);</string>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_9">
              <item>
-              <widget class="QLineEdit" name="lineEdit_7"/>
+              <widget class="QLineEdit" name="lineEditInvFilter"/>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_3">
+              <widget class="QComboBox" name="comboBoxInvFilter">
+               <property name="font">
+                <font>
+                 <family>MS Shell Dlg 2</family>
+                 <pointsize>8</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;
+</string>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Nome</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tipo</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Valor</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonInvFilter">
                <property name="styleSheet">
                 <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
                </property>
                <property name="text">
-                <string>PushButton</string>
+                <string>Procurar</string>
                </property>
               </widget>
              </item>
@@ -741,7 +779,7 @@ color: rgb(0, 0, 0);</string>
            <number>0</number>
           </property>
           <item>
-           <widget class="QTableWidget" name="tableWidget"/>
+           <widget class="QTableWidget" name="tableWidgetInv"/>
           </item>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -778,7 +816,7 @@ color: rgb(0, 0, 0);</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout">
                     <item>
-                     <widget class="QComboBox" name="comboBox_3">
+                     <widget class="QComboBox" name="comboBoxInvName">
                       <item>
                        <property name="text">
                         <string>Resistor</string>
@@ -847,10 +885,10 @@ color: rgb(0, 0, 0);</string>
                      <enum>QLayout::SetDefaultConstraint</enum>
                     </property>
                     <item>
-                     <widget class="QLineEdit" name="lineEdit_2"/>
+                     <widget class="QLineEdit" name="lineEditInvValue"/>
                     </item>
                     <item>
-                     <widget class="QComboBox" name="comboBox">
+                     <widget class="QComboBox" name="comboBoxInvValueMagnitude">
                       <item>
                        <property name="text">
                         <string/>
@@ -899,7 +937,7 @@ color: rgb(0, 0, 0);</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QComboBox" name="comboBox_2">
+                     <widget class="QComboBox" name="comboBoxInvValueType">
                       <item>
                        <property name="text">
                         <string/>
@@ -967,7 +1005,7 @@ color: rgb(0, 0, 0);</string>
                      </property>
                      <layout class="QHBoxLayout" name="horizontalLayout_3">
                       <item>
-                       <widget class="QLineEdit" name="lineEdit_3"/>
+                       <widget class="QLineEdit" name="lineEditInvQuantity"/>
                       </item>
                      </layout>
                     </widget>
@@ -982,7 +1020,7 @@ color: rgb(0, 0, 0);</string>
                      </property>
                      <layout class="QVBoxLayout" name="verticalLayout_3">
                       <item>
-                       <widget class="QLineEdit" name="lineEdit"/>
+                       <widget class="QLineEdit" name="lineEditInvMinQuantity"/>
                       </item>
                      </layout>
                     </widget>
@@ -999,7 +1037,7 @@ color: rgb(0, 0, 0);</string>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_4">
                     <item>
-                     <widget class="QLineEdit" name="lineEdit_4"/>
+                     <widget class="QLineEdit" name="lineEditInvType"/>
                     </item>
                    </layout>
                   </widget>
@@ -1014,7 +1052,7 @@ color: rgb(0, 0, 0);</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_5">
                     <item>
-                     <widget class="QLineEdit" name="lineEdit_5"/>
+                     <widget class="QLineEdit" name="lineEditInvLocal"/>
                     </item>
                    </layout>
                   </widget>
@@ -1029,7 +1067,7 @@ color: rgb(0, 0, 0);</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_6">
                     <item>
-                     <widget class="QLineEdit" name="lineEdit_6"/>
+                     <widget class="QLineEdit" name="lineEditInvDescription"/>
                     </item>
                    </layout>
                   </widget>
@@ -1042,7 +1080,36 @@ color: rgb(0, 0, 0);</string>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_4">
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="pushButtonInvAdd">
+                <property name="styleSheet">
+                 <string notr="true">.QPushButton { 
+background-color:#74ad5a;
+border:1px solid#3b6e22 ; 
+color:#ffffff; 
+font-family:Arial;
+font-size:13px;
+font-weight:bold; 
+padding:6px 12px; 
+text-decoration:none; } 
+
+.QPushButton:hover { 
+background-color:#68a54b; } 
+
+.QPushButton:active {
+ position:relative;
+ top:1px; } 
+
+.QPushButton:pressed {
+ background-color:#4b7339;
+ } </string>
+                </property>
+                <property name="text">
+                 <string>Adicionar</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonInvRemove">
                 <property name="autoFillBackground">
                  <bool>false</bool>
                 </property>
@@ -1070,35 +1137,6 @@ background-color:#a1343c; }
                 </property>
                 <property name="text">
                  <string>Remover</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButton_2">
-                <property name="styleSheet">
-                 <string notr="true">.QPushButton { 
-background-color:#74ad5a;
-border:1px solid#3b6e22 ; 
-color:#ffffff; 
-font-family:Arial;
-font-size:13px;
-font-weight:bold; 
-padding:6px 12px; 
-text-decoration:none; } 
-
-.QPushButton:hover { 
-background-color:#68a54b; } 
-
-.QPushButton:active {
- position:relative;
- top:1px; } 
-
-.QPushButton:pressed {
- background-color:#4b7339;
- } </string>
-                </property>
-                <property name="text">
-                 <string>Adicionar</string>
                 </property>
                </widget>
               </item>

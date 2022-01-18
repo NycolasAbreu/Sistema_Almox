@@ -28,8 +28,6 @@ void login::on_pushButton_Login_clicked()
     }
 
     this->CheckLogin();
-
-    db.Close();
 }
 
 void login::on_pushButton_Exit_clicked()
