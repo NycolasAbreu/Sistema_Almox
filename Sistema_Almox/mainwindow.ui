@@ -701,74 +701,80 @@ color: rgb(0, 0, 0);</string>
           <property name="title">
            <string>Filtrar</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_5">
+          <layout class="QHBoxLayout" name="horizontalLayout_9">
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_9">
-             <item>
-              <widget class="QLineEdit" name="lineEditInvFilter"/>
-             </item>
-             <item>
-              <widget class="QComboBox" name="comboBoxInvFilter">
-               <property name="font">
-                <font>
-                 <family>MS Shell Dlg 2</family>
-                 <pointsize>8</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;
+            <widget class="QLineEdit" name="lineEditInvFilter"/>
+           </item>
+           <item>
+            <widget class="QComboBox" name="comboBoxInvFilter">
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>8</pointsize>
+               <weight>50</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;
 </string>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>16</width>
-                 <height>16</height>
-                </size>
-               </property>
-               <item>
-                <property name="text">
-                 <string>Nome</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Tipo</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Valor</string>
-                </property>
-               </item>
-              </widget>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>16</width>
+               <height>16</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string>Nome</string>
+              </property>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButtonInvFilter">
-               <property name="styleSheet">
-                <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
-               </property>
-               <property name="text">
-                <string>Procurar</string>
-               </property>
-              </widget>
+              <property name="text">
+               <string>Tipo</string>
+              </property>
              </item>
              <item>
-              <spacer name="horizontalSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
+              <property name="text">
+               <string>Valor</string>
+              </property>
              </item>
-            </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButtonInvFilter">
+             <property name="styleSheet">
+              <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Procurar</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButtonInvRefresh">
+             <property name="styleSheet">
+              <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Atualizar</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>397</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>

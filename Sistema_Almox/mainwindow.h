@@ -21,6 +21,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void InitInvTable();
 
 private slots:
 //------------------------------------------Inventory------------------------------------------
@@ -29,6 +30,10 @@ private slots:
     void on_pushButtonInvRemove_clicked();
     void CleanInvLines();
     void SetInvValues(Inventory& inv);
+
+    void on_tabWidget_currentChanged(int index);
+
+    void on_pushButtonInvRefresh_clicked();
 
 private:
     Ui::MainWindow *ui;
