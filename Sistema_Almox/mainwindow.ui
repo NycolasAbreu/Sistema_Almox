@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1104</width>
-    <height>721</height>
+    <width>1117</width>
+    <height>719</height>
    </rect>
   </property>
   <property name="palette">
@@ -1091,7 +1091,7 @@ color: rgb(0, 0, 0);</string>
                  <string notr="true">.QPushButton { 
 background-color:#74ad5a;
 border:1px solid#3b6e22 ; 
-color:#ffffff; 
+color:#000000; 
 font-family:Arial;
 font-size:13px;
 font-weight:bold; 
@@ -1115,6 +1115,39 @@ background-color:#68a54b; }
                </widget>
               </item>
               <item>
+               <widget class="QPushButton" name="pushButtonInvEdit">
+                <property name="autoFillBackground">
+                 <bool>false</bool>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">.QPushButton { 
+background-color: rgb(234, 234, 0);
+border:1px solid#3b6e22 ; 
+color:#000000; 
+font-family:Arial;
+font-size:13px;
+font-weight:bold; 
+padding:6px 12px; 
+text-decoration:none; } 
+
+.QPushButton:hover { 
+background-color: rgb(190, 190, 0);
+ } 
+
+.QPushButton:active {
+ position:relative;
+ top:1px; } 
+
+.QPushButton:pressed {
+	background-color: rgb(98, 98, 0);
+ } </string>
+                </property>
+                <property name="text">
+                 <string>Editar</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="pushButtonInvRemove">
                 <property name="autoFillBackground">
                  <bool>false</bool>
@@ -1123,7 +1156,7 @@ background-color:#68a54b; }
                  <string notr="true">.QPushButton { 
 background-color:#cc4245;
 border:1px solid#3b6e22 ; 
-color:#ffffff; 
+color:#000000; 
 font-family:Arial;
 font-size:13px;
 font-weight:bold; 
@@ -1197,7 +1230,7 @@ background-color:#a1343c; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1104</width>
+     <width>1117</width>
      <height>20</height>
     </rect>
    </property>

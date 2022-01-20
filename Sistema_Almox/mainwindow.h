@@ -30,6 +30,7 @@ private slots:
     void on_pushButtonInvRemove_clicked();
     void CleanInvLines();
     void SetInvValues(Inventory& inv);
+    void CleanInvTable();
 
     void on_tabWidget_currentChanged(int index);
 

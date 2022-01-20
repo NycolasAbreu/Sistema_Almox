@@ -23,6 +23,7 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 {
     if(index == 0)
     {
+        CleanInvTable();
         InitInvTable();
     }
 }
@@ -38,19 +39,30 @@ void MainWindow::on_pushButtonInvAdd_clicked()
     inv.SaveComponent(inv);
 
     this->CleanInvLines();
+
+    CleanInvTable();
+    InitInvTable();
 }
 
 void MainWindow::on_pushButtonInvRemove_clicked()
 {
-    int linha = ui->tableWidgetInv->currentRow();
-    QString id = ui->tableWidgetInv->item(linha,0)->text();
+    int line = ui->tableWidgetInv->currentRow();
+
+    if(line == -1)
+    {
+        Message::AboutMessage("Selecione um componente para remover");
+        return;
+    }
+
+    QString id = ui->tableWidgetInv->item(line,0)->text();
 
     QSqlQuery query;
     query.prepare("delete from Inventory where idItem ="+id);
 
     if(query.exec())
     {
-        ui->tableWidgetInv->removeRow(linha);
+        ui->tableWidgetInv->removeRow(line);
+        ui->tableWidgetInv->setCurrentItem(0);
     }
 }
 
@@ -59,31 +71,10 @@ void MainWindow::on_pushButtonInvFilter_clicked()
 
 }
 
-void MainWindow::CleanInvLines()
+void MainWindow::on_pushButtonInvRefresh_clicked()
 {
-    ui->lineEditInvValue->clear();
-    ui->lineEditInvQuantity->clear();
-    ui->lineEditInvMinQuantity->clear();
-    ui->lineEditInvType->clear();
-    ui->lineEditInvLocal->clear();
-    ui->lineEditInvDescription->clear();
-    ui->comboBoxInvName->setCurrentIndex(0);
-    ui->comboBoxInvValueMagnitude->setCurrentIndex(0);
-    ui->comboBoxInvValueType->setCurrentIndex(0);
-    ui->lineEditInvFilter->setFocus();
-}
-
-void MainWindow::SetInvValues(Inventory& inv)
-{
-    inv.SetName(ui->comboBoxInvName->currentText());
-    inv.SetValue(ui->lineEditInvValue->text().toInt());
-    inv.SetValueMagnitute(ui->comboBoxInvValueMagnitude->currentText());
-    inv.SetvalueType(ui->comboBoxInvValueType->currentText());
-    inv.SetQuantity(ui->lineEditInvQuantity->text().toInt());
-    inv.SetMinQuantity(ui->lineEditInvMinQuantity->text().toInt());
-    inv.SetLocal(ui->lineEditInvLocal->text());
-    inv.SetDescription(ui->lineEditInvDescription->text());
-    inv.SetType(ui->lineEditInvType->text());
+    CleanInvTable();
+    InitInvTable();
 }
 
 void MainWindow::InitInvTable()
@@ -110,6 +101,7 @@ void MainWindow::InitInvTable()
             cont++;
         }
     }
+
     ui->tableWidgetInv->setColumnWidth(0,40);
     ui->tableWidgetInv->setColumnWidth(1,150);
     ui->tableWidgetInv->setColumnWidth(2,120);
@@ -127,13 +119,38 @@ void MainWindow::InitInvTable()
     ui->tableWidgetInv->setStyleSheet("QTableView {selection-background-color:blue}");
 }
 
-void MainWindow::on_pushButtonInvRefresh_clicked()
+void MainWindow::CleanInvTable()
 {
-    InitInvTable();
+    while (ui->tableWidgetInv->rowCount()>0)
+    {
+        ui->tableWidgetInv->removeRow(0);
+    }
+}
+
+void MainWindow::CleanInvLines()
+{
+    ui->lineEditInvValue->clear();
+    ui->lineEditInvQuantity->clear();
+    ui->lineEditInvMinQuantity->clear();
+    ui->lineEditInvType->clear();
+    ui->lineEditInvLocal->clear();
+    ui->lineEditInvDescription->clear();
+    ui->comboBoxInvName->setCurrentIndex(0);
+    ui->comboBoxInvValueMagnitude->setCurrentIndex(0);
+    ui->comboBoxInvValueType->setCurrentIndex(0);
+}
+
+void MainWindow::SetInvValues(Inventory& inv)
+{
+    inv.SetName(ui->comboBoxInvName->currentText());
+    inv.SetValue(ui->lineEditInvValue->text().toInt());
+    inv.SetValueMagnitute(ui->comboBoxInvValueMagnitude->currentText());
+    inv.SetvalueType(ui->comboBoxInvValueType->currentText());
+    inv.SetQuantity(ui->lineEditInvQuantity->text().toInt());
+    inv.SetMinQuantity(ui->lineEditInvMinQuantity->text().toInt());
+    inv.SetLocal(ui->lineEditInvLocal->text());
+    inv.SetDescription(ui->lineEditInvDescription->text());
+    inv.SetType(ui->lineEditInvType->text());
 }
 
 //--------------------------------------------------------------------------------------------
-
-
-
-
