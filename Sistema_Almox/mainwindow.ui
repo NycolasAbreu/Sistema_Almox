@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1117</width>
-    <height>719</height>
+    <width>971</width>
+    <height>948</height>
    </rect>
   </property>
   <property name="palette">
@@ -780,12 +780,19 @@ color: rgb(0, 0, 0);</string>
          </widget>
         </item>
         <item row="1" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="4,1">
+         <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="4,0,1">
           <property name="rightMargin">
            <number>0</number>
           </property>
           <item>
            <widget class="QTableWidget" name="tableWidgetInv"/>
+          </item>
+          <item>
+           <widget class="Line" name="line">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
           </item>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -1084,7 +1091,7 @@ color: rgb(0, 0, 0);</string>
              </widget>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <layout class="QHBoxLayout" name="horizontalLayout_11">
               <item>
                <widget class="QPushButton" name="pushButtonInvAdd">
                 <property name="styleSheet">
@@ -1111,39 +1118,6 @@ background-color:#68a54b; }
                 </property>
                 <property name="text">
                  <string>Adicionar</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButtonInvEdit">
-                <property name="autoFillBackground">
-                 <bool>false</bool>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">.QPushButton { 
-background-color: rgb(234, 234, 0);
-border:1px solid#3b6e22 ; 
-color:#000000; 
-font-family:Arial;
-font-size:13px;
-font-weight:bold; 
-padding:6px 12px; 
-text-decoration:none; } 
-
-.QPushButton:hover { 
-background-color: rgb(190, 190, 0);
- } 
-
-.QPushButton:active {
- position:relative;
- top:1px; } 
-
-.QPushButton:pressed {
-	background-color: rgb(98, 98, 0);
- } </string>
-                </property>
-                <property name="text">
-                 <string>Editar</string>
                 </property>
                </widget>
               </item>
@@ -1182,6 +1156,136 @@ background-color:#a1343c; }
              </layout>
             </item>
             <item>
+             <widget class="QGroupBox" name="groupBox_10">
+              <property name="styleSheet">
+               <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
+              <property name="title">
+               <string>Editar</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_8">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_14">
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_13">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Quantidade</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_15">
+                    <item>
+                     <widget class="QLineEdit" name="lineEditEditInvQuantity"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_14">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Quantidade mín.</string>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_7">
+                    <item>
+                     <widget class="QLineEdit" name="lineEditEditInvMinQuantity"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupBox_15">
+                 <property name="styleSheet">
+                  <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                 </property>
+                 <property name="title">
+                  <string>Local</string>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_16">
+                  <item>
+                   <widget class="QLineEdit" name="lineEditEditInvLocal"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <spacer name="horizontalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonInvEdit">
+                <property name="autoFillBackground">
+                 <bool>false</bool>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">.QPushButton { 
+background-color: rgb(234, 234, 0);
+border:1px solid#3b6e22 ; 
+color:#000000; 
+font-family:Arial;
+font-size:13px;
+font-weight:bold; 
+padding:6px 12px; 
+text-decoration:none; } 
+
+.QPushButton:hover { 
+background-color: rgb(190, 190, 0);
+ } 
+
+.QPushButton:active {
+ position:relative;
+ top:1px; } 
+
+.QPushButton:pressed {
+	background-color: rgb(98, 98, 0);
+ } </string>
+                </property>
+                <property name="text">
+                 <string>Editar</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item>
              <spacer name="verticalSpacer">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
@@ -1191,8 +1295,8 @@ background-color:#a1343c; }
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>20</width>
-                <height>40</height>
+                <width>250</width>
+                <height>13</height>
                </size>
               </property>
              </spacer>
@@ -1230,7 +1334,7 @@ background-color:#a1343c; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1117</width>
+     <width>971</width>
      <height>20</height>
     </rect>
    </property>

@@ -36,6 +36,10 @@ private slots:
 
     void on_pushButtonInvRefresh_clicked();
 
+    void on_pushButtonInvEdit_clicked();
+
+    void on_tableWidgetInv_itemSelectionChanged();
+
 private:
     Ui::MainWindow *ui;
 

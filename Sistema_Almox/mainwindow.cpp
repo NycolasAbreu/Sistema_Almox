@@ -32,6 +32,8 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 
 void MainWindow::on_pushButtonInvAdd_clicked()
 {
+    ui->tableWidgetInv->reset();        //Precisa estar com o foco fora da tabela
+
     Inventory inv;
 
     this->SetInvValues(inv);
@@ -66,6 +68,11 @@ void MainWindow::on_pushButtonInvRemove_clicked()
     }
 }
 
+void MainWindow::on_pushButtonInvEdit_clicked()
+{
+
+}
+
 void MainWindow::on_pushButtonInvFilter_clicked()
 {
 
@@ -77,6 +84,20 @@ void MainWindow::on_pushButtonInvRefresh_clicked()
     InitInvTable();
 }
 
+void MainWindow::on_tableWidgetInv_itemSelectionChanged()
+{
+    int id = ui->tableWidgetInv->item(ui->tableWidgetInv->currentRow(),0)->text().toInt();
+    QSqlQuery query;
+    query.prepare("select * from Inventory where idItem="+QString::number(id));
+    if(query.exec())
+    {
+        query.first();
+        ui->lineEditEditInvQuantity->setText(query.value(3).toString());
+        ui->lineEditEditInvMinQuantity->setText(query.value(4).toString());
+        ui->lineEditEditInvLocal->setText(query.value(5).toString());
+    }
+}
+
 void MainWindow::InitInvTable()
 {
     QSqlQuery query;
@@ -85,7 +106,7 @@ void MainWindow::InitInvTable()
     if(query.exec())
     {
         int cont = 0;
-        ui->tableWidgetInv->setColumnCount(7);
+        ui->tableWidgetInv->setColumnCount(8);
         while(query.next())
         {
             ui->tableWidgetInv->insertRow(cont);
@@ -109,6 +130,7 @@ void MainWindow::InitInvTable()
     ui->tableWidgetInv->setColumnWidth(4,130);
     ui->tableWidgetInv->setColumnWidth(5,120);
     ui->tableWidgetInv->setColumnWidth(6,120);
+    ui->tableWidgetInv->setColumnWidth(7,420);
 
     QStringList cabecalho = {"Id","Componente","Valor","Quantidade","Quantidade mínima","Tipo","Local","Descrição"};
     ui->tableWidgetInv->setHorizontalHeaderLabels(cabecalho);
