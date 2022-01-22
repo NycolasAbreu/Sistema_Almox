@@ -46,8 +46,8 @@ O objetivo deste trabalho será o desenvolvimento de um sistema de gestão para 
 - [X] Tela Estoque.
 - [ ] Tela Alunos.
 - [ ] Tela Empréstimos.
-- [ ] Clase usuário.
-- [X] Clase item.
+- [ ] Classe usuário.
+- [X] Classe item.
 
 ## Feedback dos técnicos
 
