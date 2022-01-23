@@ -57,6 +57,7 @@ void MainWindow::on_pushButtonInvRemove_clicked()
     }
 
     QString id = ui->tableWidgetInv->item(line,0)->text();
+    ui->tableWidgetInv->reset();
 
     QSqlQuery query;
     query.prepare("delete from Inventory where idItem ="+id);
@@ -87,6 +88,8 @@ void MainWindow::on_pushButtonInvEdit_clicked()
         QString quantity = ui->lineEditEditInvQuantity->text();
         QString minQuantity = ui->lineEditEditInvMinQuantity->text();
         QString local = ui->lineEditEditInvLocal->text();
+
+        ui->tableWidgetInv->reset();
 
         QSqlQuery query;
             query.prepare("UPDATE Inventory SET idItem=:id, nameItem=:name, valueItem=:value, quantityItem=:quant,"
