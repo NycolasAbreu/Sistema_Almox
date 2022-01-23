@@ -70,6 +70,49 @@ void MainWindow::on_pushButtonInvRemove_clicked()
 
 void MainWindow::on_pushButtonInvEdit_clicked()
 {
+    int line = ui->tableWidgetInv->currentRow();
+
+    if(line == -1)
+    {
+        Message::AboutMessage("Selecione um componente para remover");
+        return;
+    }
+    else
+    {
+        int id = ui->tableWidgetInv->item(ui->tableWidgetInv->currentRow(),0)->text().toInt();
+        QString name = ui->tableWidgetInv->item(ui->tableWidgetInv->currentRow(),1)->text();
+        QString value = ui->tableWidgetInv->item(ui->tableWidgetInv->currentRow(),2)->text();
+        QString type = ui->tableWidgetInv->item(ui->tableWidgetInv->currentRow(),5)->text();
+        QString description = ui->tableWidgetInv->item(ui->tableWidgetInv->currentRow(),7)->text();
+        QString quantity = ui->lineEditEditInvQuantity->text();
+        QString minQuantity = ui->lineEditEditInvMinQuantity->text();
+        QString local = ui->lineEditEditInvLocal->text();
+
+        QSqlQuery query;
+            query.prepare("UPDATE Inventory SET idItem=:id, nameItem=:name, valueItem=:value, quantityItem=:quant,"
+                          " minQuantityItem=:minquant, typeItem=:type, localItem=:local, descriptionItem=:desc WHERE"
+                          " idItem=:id ");
+
+            query.bindValue(":name", name);
+            query.bindValue(":value", value);
+            query.bindValue(":quant", quantity);
+            query.bindValue(":minquant", minQuantity);
+            query.bindValue(":type", type);
+            query.bindValue(":local", local);
+            query.bindValue(":desc", description);
+            query.bindValue(":id", id);
+
+        if(query.exec())
+        {
+            Message::AboutMessage("Atualizado");
+            CleanInvTable();
+            InitInvTable();
+        }
+        else
+        {
+            Message::WarningMessage("Não foi possível atualizar");
+        }
+    }
 
 }
 
@@ -80,8 +123,9 @@ void MainWindow::on_pushButtonInvFilter_clicked()
 
 void MainWindow::on_pushButtonInvRefresh_clicked()
 {
-    CleanInvTable();
-    InitInvTable();
+    ui->tableWidgetInv->reset();
+    this->CleanInvTable();
+    this->InitInvTable();
 }
 
 void MainWindow::on_tableWidgetInv_itemSelectionChanged()
@@ -94,7 +138,7 @@ void MainWindow::on_tableWidgetInv_itemSelectionChanged()
         query.first();
         ui->lineEditEditInvQuantity->setText(query.value(3).toString());
         ui->lineEditEditInvMinQuantity->setText(query.value(4).toString());
-        ui->lineEditEditInvLocal->setText(query.value(5).toString());
+        ui->lineEditEditInvLocal->setText(query.value(6).toString());
     }
 }
 
