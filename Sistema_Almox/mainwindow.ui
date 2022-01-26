@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>992</width>
-    <height>956</height>
+    <width>1514</width>
+    <height>951</height>
    </rect>
   </property>
   <property name="palette">
@@ -1334,7 +1334,7 @@ background-color: rgb(190, 190, 0);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>992</width>
+     <width>1514</width>
      <height>20</height>
     </rect>
    </property>

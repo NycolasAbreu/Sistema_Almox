@@ -121,7 +121,47 @@ void MainWindow::on_pushButtonInvEdit_clicked()
 
 void MainWindow::on_pushButtonInvFilter_clicked()
 {
+    this->CleanInvTable();
 
+    QString search;
+
+    if(ui->comboBoxInvFilter->currentText() == "Nome")
+    {
+        search = "select idItem,nameItem,valueItem,quantityItem,minQuantityItem,typeItem,localItem,descriptionItem \
+                    from Inventory where nameItem like '%"+ui->lineEditInvFilter->text()+"%' order by nameItem";
+    }
+    else if(ui->comboBoxInvFilter->currentText() == "Tipo")
+    {
+        search = "select idItem,nameItem,valueItem,quantityItem,minQuantityItem,typeItem,localItem,descriptionItem \
+                    from Inventory where typeItem like '%"+ui->lineEditInvFilter->text()+"%' order by typeItem";
+    }
+    else if(ui->comboBoxInvFilter->currentText() == "Valor")
+    {
+        search = "select idItem,nameItem,valueItem,quantityItem,minQuantityItem,typeItem,localItem,descriptionItem \
+                    from Inventory where valueItem like '%"+ui->lineEditInvFilter->text()+"%' order by valueItem";
+    }
+
+    int cont = 0;
+    QSqlQuery query;
+
+    query.prepare(search);
+
+    if(query.exec())
+    {
+        while(query.next()){
+            ui->tableWidgetInv->insertRow(cont);
+            ui->tableWidgetInv->setItem(cont,0,new QTableWidgetItem(query.value(0).toString()));
+            ui->tableWidgetInv->setItem(cont,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidgetInv->setItem(cont,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidgetInv->setItem(cont,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidgetInv->setItem(cont,4,new QTableWidgetItem(query.value(4).toString()));
+            ui->tableWidgetInv->setItem(cont,5,new QTableWidgetItem(query.value(5).toString()));
+            ui->tableWidgetInv->setItem(cont,6,new QTableWidgetItem(query.value(6).toString()));
+            ui->tableWidgetInv->setItem(cont,7,new QTableWidgetItem(query.value(7).toString()));
+            ui->tableWidgetInv->setRowHeight(cont,20);
+            cont++;
+        }
+    }
 }
 
 void MainWindow::on_pushButtonInvRefresh_clicked()
