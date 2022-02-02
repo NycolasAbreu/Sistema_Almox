@@ -44,7 +44,7 @@ O objetivo deste trabalho será o desenvolvimento de um sistema de gestão para 
 - [X] Tela Login.
 - [X] Tela principal.
 - [X] Tela Estoque.
-- [ ] Tela Alunos.
+- [X] Tela Alunos.
 - [ ] Tela Empréstimos.
 - [ ] Classe usuário.
 - [X] Classe item.
