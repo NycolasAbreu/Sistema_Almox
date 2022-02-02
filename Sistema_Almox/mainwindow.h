@@ -40,6 +40,14 @@ private slots:
 
     void on_tableWidgetInv_itemSelectionChanged();
 
+    void on_actionSair_triggered();
+
+    void on_actionAlunos_triggered();
+
+    void on_actionEstoque_triggered();
+
+    void on_actionEmprestimos_triggered();
+
 private:
     Ui::MainWindow *ui;
 

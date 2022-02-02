@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1514</width>
+    <width>1219</width>
     <height>951</height>
    </rect>
   </property>
@@ -701,69 +701,73 @@ color: rgb(0, 0, 0);</string>
           <property name="title">
            <string>Filtrar</string>
           </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_9">
-           <item>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="0" column="0">
             <widget class="QLineEdit" name="lineEditInvFilter"/>
            </item>
-           <item>
-            <widget class="QComboBox" name="comboBoxInvFilter">
-             <property name="font">
-              <font>
-               <family>MS Shell Dlg 2</family>
-               <pointsize>8</pointsize>
-               <weight>50</weight>
-               <italic>false</italic>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;
+           <item row="0" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="0,0,0">
+             <item>
+              <widget class="QComboBox" name="comboBoxInvFilter">
+               <property name="font">
+                <font>
+                 <family>MS Shell Dlg 2</family>
+                 <pointsize>8</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;
 </string>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>16</width>
-               <height>16</height>
-              </size>
-             </property>
-             <item>
-              <property name="text">
-               <string>Nome</string>
-              </property>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Nome</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tipo</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Valor</string>
+                </property>
+               </item>
+              </widget>
              </item>
              <item>
-              <property name="text">
-               <string>Tipo</string>
-              </property>
+              <widget class="QPushButton" name="pushButtonInvFilter">
+               <property name="styleSheet">
+                <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+               </property>
+               <property name="text">
+                <string>Procurar</string>
+               </property>
+              </widget>
              </item>
              <item>
-              <property name="text">
-               <string>Valor</string>
-              </property>
+              <widget class="QPushButton" name="pushButtonInvRefresh">
+               <property name="styleSheet">
+                <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+               </property>
+               <property name="text">
+                <string>Atualizar</string>
+               </property>
+              </widget>
              </item>
-            </widget>
+            </layout>
            </item>
-           <item>
-            <widget class="QPushButton" name="pushButtonInvFilter">
-             <property name="styleSheet">
-              <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
-             </property>
-             <property name="text">
-              <string>Procurar</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButtonInvRefresh">
-             <property name="styleSheet">
-              <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
-             </property>
-             <property name="text">
-              <string>Atualizar</string>
-             </property>
-            </widget>
-           </item>
-           <item>
+           <item row="0" column="2">
             <spacer name="horizontalSpacer">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -814,7 +818,7 @@ color: rgb(0, 0, 0);</string>
                <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
               </property>
               <property name="title">
-               <string>Adicionar ou remover</string>
+               <string>Adicionar ou remover itens</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_6">
                <item>
@@ -1324,6 +1328,275 @@ background-color: rgb(190, 190, 0);
        <attribute name="title">
         <string>Alunos</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_11">
+          <property name="styleSheet">
+           <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+          </property>
+          <property name="title">
+           <string>Filtrar</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0">
+            <widget class="QLineEdit" name="lineEditStudentFilter"/>
+           </item>
+           <item row="0" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_12">
+             <item>
+              <widget class="QComboBox" name="comboBoxStudentFilter">
+               <property name="font">
+                <font>
+                 <family>MS Shell Dlg 2</family>
+                 <pointsize>8</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;
+</string>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Nome</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Matrícula</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonStudentFilter">
+               <property name="styleSheet">
+                <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+               </property>
+               <property name="text">
+                <string>Procurar</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonStudentRefresh">
+               <property name="styleSheet">
+                <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+               </property>
+               <property name="text">
+                <string>Atualizar</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="2">
+            <spacer name="horizontalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>397</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_22" stretch="4,0,2">
+          <item>
+           <widget class="QTableWidget" name="tableWidgetStudent"/>
+          </item>
+          <item>
+           <widget class="Line" name="line_3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_13">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QGroupBox" name="groupBox_23">
+              <property name="font">
+               <font>
+                <family>MS Shell Dlg 2</family>
+                <pointsize>12</pointsize>
+                <weight>9</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
+              <property name="title">
+               <string>Adicionar ou remover alunos</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_14">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_15">
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_24">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Nome</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_23">
+                    <item>
+                     <widget class="QLineEdit" name="lineEditStudentName"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_25">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Matrícula</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_24" stretch="3">
+                    <property name="sizeConstraint">
+                     <enum>QLayout::SetDefaultConstraint</enum>
+                    </property>
+                    <item>
+                     <widget class="QLineEdit" name="lineEditStudentRegistry"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_26">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Curso</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_26">
+                    <item>
+                     <widget class="QLineEdit" name="lineEditStudentCourse"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_29">
+              <item>
+               <widget class="QPushButton" name="pushButtonStudentAdd">
+                <property name="styleSheet">
+                 <string notr="true">.QPushButton { 
+background-color:#74ad5a;
+border:1px solid#3b6e22 ; 
+color:#000000; 
+font-family:Arial;
+font-size:13px;
+font-weight:bold; 
+padding:6px 12px; 
+text-decoration:none; } 
+
+.QPushButton:hover { 
+background-color:#68a54b; } 
+
+.QPushButton:active {
+ position:relative;
+ top:1px; } 
+
+.QPushButton:pressed {
+ background-color:#4b7339;
+ } </string>
+                </property>
+                <property name="text">
+                 <string>Adicionar</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonStudentRemove">
+                <property name="autoFillBackground">
+                 <bool>false</bool>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">.QPushButton { 
+background-color:#cc4245;
+border:1px solid#3b6e22 ; 
+color:#000000; 
+font-family:Arial;
+font-size:13px;
+font-weight:bold; 
+padding:6px 12px; 
+text-decoration:none; } 
+
+.QPushButton:hover { 
+background-color:#a1343c; } 
+
+.QPushButton:active {
+ position:relative;
+ top:1px; } 
+
+.QPushButton:pressed {
+ background-color:#702427;
+ } </string>
+                </property>
+                <property name="text">
+                 <string>Remover</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Expanding</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>250</width>
+                <height>13</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <widget class="Line" name="line_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -1334,7 +1607,7 @@ background-color: rgb(190, 190, 0);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1514</width>
+     <width>1219</width>
      <height>20</height>
     </rect>
    </property>
@@ -1342,9 +1615,9 @@ background-color: rgb(190, 190, 0);
     <property name="title">
      <string>Gestão</string>
     </property>
-    <addaction name="actionAlunos"/>
     <addaction name="actionEstoque"/>
     <addaction name="actionEmprestimos"/>
+    <addaction name="actionAlunos"/>
    </widget>
    <widget class="QMenu" name="menuSistema_2">
     <property name="title">
@@ -1382,7 +1655,7 @@ background-color: rgb(190, 190, 0);
      <normaloff>:/new/Icons/Icons/emprestar.png</normaloff>:/new/Icons/Icons/emprestar.png</iconset>
    </property>
    <property name="text">
-    <string>Empréstimos</string>
+    <string>Empréstimo</string>
    </property>
    <property name="toolTip">
     <string>Emprestimos</string>

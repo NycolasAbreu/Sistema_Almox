@@ -9,8 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     this->setWindowTitle("Sistema Almox");
-    const QIcon icon(":/new/Icons/Icons/ifsc.png");
-    this->setWindowIcon(icon);
+
     ui->lineEditInvFilter->setFocus();
 }
 
@@ -26,6 +25,26 @@ void MainWindow::on_tabWidget_currentChanged(int index)
         CleanInvTable();
         InitInvTable();
     }
+}
+
+void MainWindow::on_actionSair_triggered()
+{
+    this->close();
+}
+
+void MainWindow::on_actionEstoque_triggered()
+{
+    ui->tabWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_actionEmprestimos_triggered()
+{
+    ui->tabWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_actionAlunos_triggered()
+{
+    ui->tabWidget->setCurrentIndex(2);
 }
 
 //------------------------------------------Inventory------------------------------------------
@@ -263,3 +282,4 @@ void MainWindow::SetInvValues(Inventory& inv)
 }
 
 //--------------------------------------------------------------------------------------------
+

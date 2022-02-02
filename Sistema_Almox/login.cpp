@@ -8,9 +8,6 @@ login::login(QWidget *parent) :
     ui->setupUi(this);
     this->setFixedSize(311,198);
     this->setWindowTitle("Login");
-
-    const QIcon icon(":/new/Icons/Icons/ifsc.png");
-    this->setWindowIcon(icon);
 }
 
 login::~login()

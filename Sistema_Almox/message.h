@@ -10,7 +10,7 @@ public:
 
     static void WarningMessage(QString message);
     static void AboutMessage(QString message);
-    static void ChangeFont(QMessageBox& msgBox);
+    static void ModifyInterface(QMessageBox& msgBox);
 };
 
 #endif // MESSAGE_H

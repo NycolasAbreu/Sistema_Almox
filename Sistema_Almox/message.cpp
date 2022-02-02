@@ -6,28 +6,31 @@ Message::Message()
 }
 
 void Message::WarningMessage(QString message){
-    QMessageBox msgBox(QMessageBox::Information, "Warning", message);
+    QMessageBox msgBox(QMessageBox::Information, "Atenção", message);
 
-    ChangeFont(msgBox);
+    ModifyInterface(msgBox);
     msgBox.exec();
 };
 
 void Message::AboutMessage(QString message){
-    QMessageBox msgBox(QMessageBox::Information, "About", message);
+    QMessageBox msgBox(QMessageBox::Information, "Informação", message);
 
-    ChangeFont(msgBox);
+    ModifyInterface(msgBox);
     msgBox.exec();
 };
 
-void Message::ChangeFont(QMessageBox& msgBox){
-    //Change background color
+void Message::ModifyInterface(QMessageBox& msgBox){
+    //Muda cor do background
     QPalette palette;
-    palette.setColor(QPalette::Window, Qt::cyan);
+    palette.setColor(QPalette::Window, Qt::white);
     msgBox.setPalette(palette);
 
-    //Change font
+    //Muda fonte
     QFont font( "Arial" );
     font.setPointSize(10);
     font.setBold(true);
     msgBox.setFont(font);
+
+    //Adiciona icone
+    msgBox.setIconPixmap(QPixmap("qrc:/new/Icons/Icons/ifsc.png"));
 };
