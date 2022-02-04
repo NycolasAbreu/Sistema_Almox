@@ -2,50 +2,67 @@
 #include "ui_mainwindow.h"
 #include <QDebug>
 
+//---------------------------------------------------------------------------------------------
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    this->setWindowTitle("Sistema Almox");
+    setWindowTitle("Sistema Almox");
+    InitInvTable();
 
     ui->lineEditInvFilter->setFocus();
 }
+
+//---------------------------------------------------------------------------------------------
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+//---------------------------------------------------------------------------------------------
+
 void MainWindow::on_tabWidget_currentChanged(int index)
 {
     if(index == 0)
     {
         CleanInvTable();
-        InitInvTable();
+        RefreshInvTable();
     }
 }
 
+//---------------------------------------------------------------------------------------------
+
 void MainWindow::on_actionSair_triggered()
 {
-    this->close();
+    close();
 }
+
+//---------------------------------------------------------------------------------------------
 
 void MainWindow::on_actionEstoque_triggered()
 {
     ui->tabWidget->setCurrentIndex(0);
 }
 
+//---------------------------------------------------------------------------------------------
+
 void MainWindow::on_actionEmprestimos_triggered()
 {
     ui->tabWidget->setCurrentIndex(1);
 }
 
+//---------------------------------------------------------------------------------------------
+
 void MainWindow::on_actionAlunos_triggered()
 {
     ui->tabWidget->setCurrentIndex(2);
 }
+
+//---------------------------------------------------------------------------------------------
 
 //------------------------------------------Inventory------------------------------------------
 
@@ -55,15 +72,17 @@ void MainWindow::on_pushButtonInvAdd_clicked()
 
     Inventory inv;
 
-    this->SetInvValues(inv);
+    SetInvValues(inv);
 
     inv.SaveComponent(inv);
 
-    this->CleanInvLines();
+    CleanInvLines();
 
     CleanInvTable();
-    InitInvTable();
+    RefreshInvTable();
 }
+
+//---------------------------------------------------------------------------------------------
 
 void MainWindow::on_pushButtonInvRemove_clicked()
 {
@@ -88,6 +107,8 @@ void MainWindow::on_pushButtonInvRemove_clicked()
     }
 }
 
+//---------------------------------------------------------------------------------------------
+
 void MainWindow::on_pushButtonInvEdit_clicked()
 {
     int line = ui->tableWidgetInv->currentRow();
@@ -111,24 +132,24 @@ void MainWindow::on_pushButtonInvEdit_clicked()
         ui->tableWidgetInv->reset();
 
         QSqlQuery query;
-            query.prepare("UPDATE Inventory SET idItem=:id, nameItem=:name, valueItem=:value, quantityItem=:quant,"
-                          " minQuantityItem=:minquant, typeItem=:type, localItem=:local, descriptionItem=:desc WHERE"
-                          " idItem=:id ");
+        query.prepare("UPDATE Inventory SET idItem=:id, nameItem=:name, valueItem=:value, quantityItem=:quant,"
+                      " minQuantityItem=:minquant, typeItem=:type, localItem=:local, descriptionItem=:desc WHERE"
+                      " idItem=:id ");
 
-            query.bindValue(":name", name);
-            query.bindValue(":value", value);
-            query.bindValue(":quant", quantity);
-            query.bindValue(":minquant", minQuantity);
-            query.bindValue(":type", type);
-            query.bindValue(":local", local);
-            query.bindValue(":desc", description);
-            query.bindValue(":id", id);
+        query.bindValue(":name", name);
+        query.bindValue(":value", value);
+        query.bindValue(":quant", quantity);
+        query.bindValue(":minquant", minQuantity);
+        query.bindValue(":type", type);
+        query.bindValue(":local", local);
+        query.bindValue(":desc", description);
+        query.bindValue(":id", id);
 
         if(query.exec())
         {
             Message::AboutMessage("Atualizado");
             CleanInvTable();
-            InitInvTable();
+            RefreshInvTable();
         }
         else
         {
@@ -138,9 +159,11 @@ void MainWindow::on_pushButtonInvEdit_clicked()
 
 }
 
+//---------------------------------------------------------------------------------------------
+
 void MainWindow::on_pushButtonInvFilter_clicked()
 {
-    this->CleanInvTable();
+    CleanInvTable();
 
     QString search;
 
@@ -183,12 +206,17 @@ void MainWindow::on_pushButtonInvFilter_clicked()
     }
 }
 
+//---------------------------------------------------------------------------------------------
+
 void MainWindow::on_pushButtonInvRefresh_clicked()
 {
     ui->tableWidgetInv->reset();
-    this->CleanInvTable();
-    this->InitInvTable();
+    CleanInvTable();
+    RefreshInvTable();
 }
+
+//---------------------------------------------------------------------------------------------
+
 
 void MainWindow::on_tableWidgetInv_itemSelectionChanged()
 {
@@ -204,7 +232,32 @@ void MainWindow::on_tableWidgetInv_itemSelectionChanged()
     }
 }
 
+//---------------------------------------------------------------------------------------------
+
 void MainWindow::InitInvTable()
+{
+    ui->tableWidgetInv->setColumnCount(8);
+
+    ui->tableWidgetInv->setColumnWidth(0,10);
+    ui->tableWidgetInv->setColumnWidth(1,150);
+    ui->tableWidgetInv->setColumnWidth(2,120);
+    ui->tableWidgetInv->setColumnWidth(3,120);
+    ui->tableWidgetInv->setColumnWidth(4,130);
+    ui->tableWidgetInv->setColumnWidth(5,120);
+    ui->tableWidgetInv->setColumnWidth(6,120);
+    ui->tableWidgetInv->setColumnWidth(7,420);
+
+    RefreshInvTable();
+
+    ui->tableWidgetInv->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidgetInv->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetInv->verticalHeader()->setVisible(false);
+    ui->tableWidgetInv->setStyleSheet("QTableView {selection-background-color:blue}");
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::RefreshInvTable()
 {
     QSqlQuery query;
     query.prepare("select * from Inventory");
@@ -212,7 +265,6 @@ void MainWindow::InitInvTable()
     if(query.exec())
     {
         int cont = 0;
-        ui->tableWidgetInv->setColumnCount(8);
         while(query.next())
         {
             ui->tableWidgetInv->insertRow(cont);
@@ -229,23 +281,11 @@ void MainWindow::InitInvTable()
         }
     }
 
-    ui->tableWidgetInv->setColumnWidth(0,40);
-    ui->tableWidgetInv->setColumnWidth(1,150);
-    ui->tableWidgetInv->setColumnWidth(2,120);
-    ui->tableWidgetInv->setColumnWidth(3,120);
-    ui->tableWidgetInv->setColumnWidth(4,130);
-    ui->tableWidgetInv->setColumnWidth(5,120);
-    ui->tableWidgetInv->setColumnWidth(6,120);
-    ui->tableWidgetInv->setColumnWidth(7,420);
-
     QStringList cabecalho = {"Id","Componente","Valor","Quantidade","Quantidade mínima","Tipo","Local","Descrição"};
     ui->tableWidgetInv->setHorizontalHeaderLabels(cabecalho);
-
-    ui->tableWidgetInv->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidgetInv->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableWidgetInv->verticalHeader()->setVisible(false);
-    ui->tableWidgetInv->setStyleSheet("QTableView {selection-background-color:blue}");
 }
+
+//---------------------------------------------------------------------------------------------
 
 void MainWindow::CleanInvTable()
 {
@@ -254,6 +294,8 @@ void MainWindow::CleanInvTable()
         ui->tableWidgetInv->removeRow(0);
     }
 }
+
+//---------------------------------------------------------------------------------------------
 
 void MainWindow::CleanInvLines()
 {
@@ -267,6 +309,8 @@ void MainWindow::CleanInvLines()
     ui->comboBoxInvValueMagnitude->setCurrentIndex(0);
     ui->comboBoxInvValueType->setCurrentIndex(0);
 }
+
+//---------------------------------------------------------------------------------------------
 
 void MainWindow::SetInvValues(Inventory& inv)
 {
@@ -282,4 +326,11 @@ void MainWindow::SetInvValues(Inventory& inv)
 }
 
 //--------------------------------------------------------------------------------------------
+
+//------------------------------------------Students------------------------------------------
+
+void MainWindow::on_pushButtonStudentAdd_clicked()
+{
+
+}
 

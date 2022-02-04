@@ -31,6 +31,7 @@ private slots:
     void CleanInvLines();
     void SetInvValues(Inventory& inv);
     void CleanInvTable();
+    void RefreshInvTable();
 
     void on_tabWidget_currentChanged(int index);
 
@@ -47,6 +48,8 @@ private slots:
     void on_actionEstoque_triggered();
 
     void on_actionEmprestimos_triggered();
+
+    void on_pushButtonStudentAdd_clicked();
 
 private:
     Ui::MainWindow *ui;
