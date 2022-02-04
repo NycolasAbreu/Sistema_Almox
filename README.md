@@ -34,12 +34,12 @@ O objetivo deste trabalho será o desenvolvimento de um sistema de gestão para 
 
 ## TODO
 
-- [x] Publicar no github.
-- [x] Adicionar README.
-- [x] Receber feedback dos técnicos do almoxarifado.
-- [x] Tela de login.
-- [x] Banco de dados para componentes.
-- [ ] Banco de dados para alunos.
+- [X] Publicar no github.
+- [X] Adicionar README.
+- [X] Receber feedback dos técnicos do almoxarifado.
+- [X] Tela de login.
+- [X] Banco de dados para componentes.
+- [X] Banco de dados para alunos.
 - [ ] Banco de dados para empréstimo.
 - [X] Tela Login.
 - [X] Tela principal.
