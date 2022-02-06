@@ -7,12 +7,14 @@
 #include "database.h"
 #include "message.h"
 #include "inventory.h"
+#include "student.h"
 
 namespace Ui {
 class MainWindow;
 }
 
 class Inventory;
+class Student;
 
 class MainWindow : public QMainWindow
 {
@@ -22,16 +24,24 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void InitInvTable();
+    void InitStudentTable();
 
 private slots:
 //------------------------------------------Inventory------------------------------------------
     void on_pushButtonInvAdd_clicked();
     void on_pushButtonInvFilter_clicked();
     void on_pushButtonInvRemove_clicked();
+
     void CleanInvLines();
-    void SetInvValues(Inventory& inv);
     void CleanInvTable();
     void RefreshInvTable();
+    void SetInvValues(Inventory& inv);
+
+    void CleanStudentLines();
+    void CleanStudentTable();
+    void RefreshStudentTable();
+    void SetStudentValues(Student& student);
+
 
     void on_tabWidget_currentChanged(int index);
 
@@ -50,6 +60,12 @@ private slots:
     void on_actionEmprestimos_triggered();
 
     void on_pushButtonStudentAdd_clicked();
+
+    void on_pushButtonStudentRefresh_clicked();
+
+    void on_pushButtonStudentRemove_clicked();
+
+    void on_pushButtonStudentFilter_clicked();
 
 private:
     Ui::MainWindow *ui;

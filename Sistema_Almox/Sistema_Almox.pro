@@ -14,14 +14,16 @@ SOURCES += \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
-    message.cpp
+    message.cpp \
+    student.cpp
 
 HEADERS += \
     database.h \
     inventory.h \
     login.h \
     mainwindow.h \
-    message.h
+    message.h \
+    student.h
 
 FORMS += \
     login.ui \

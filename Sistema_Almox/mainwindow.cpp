@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setWindowTitle("Sistema Almox");
     InitInvTable();
+    InitStudentTable();
 
     ui->lineEditInvFilter->setFocus();
 }
@@ -31,6 +32,18 @@ void MainWindow::on_tabWidget_currentChanged(int index)
     {
         CleanInvTable();
         RefreshInvTable();
+    }
+
+    else if(index == 1)
+    {
+        //CleanTable();
+        //RefreshTable();
+    }
+
+    else if(index == 2)
+    {
+        CleanStudentTable();
+        RefreshStudentTable();
     }
 }
 
@@ -331,6 +344,166 @@ void MainWindow::SetInvValues(Inventory& inv)
 
 void MainWindow::on_pushButtonStudentAdd_clicked()
 {
+    ui->tableWidgetStudent->reset();        //Precisa estar com o foco fora da tabela
 
+    Student student;
+
+    SetStudentValues(student);
+
+    student.SaveStudent(student);
+
+    CleanStudentLines();
+
+    CleanStudentTable();
+    RefreshStudentTable();
 }
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::on_pushButtonStudentRemove_clicked()
+{
+    int line = ui->tableWidgetStudent->currentRow();
+
+    if(line == -1)
+    {
+        Message::AboutMessage("Selecione um componente para remover");
+        return;
+    }
+
+    QString id = ui->tableWidgetStudent->item(line,0)->text();
+    ui->tableWidgetStudent->reset();
+
+    QSqlQuery query;
+    query.prepare("delete from Students where idStudent ="+id);
+
+    if(query.exec())
+    {
+        ui->tableWidgetStudent->removeRow(line);
+        ui->tableWidgetStudent->setCurrentItem(0);
+    }
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::on_pushButtonStudentFilter_clicked()
+{
+    CleanStudentTable();
+
+    QString search;
+
+    if(ui->comboBoxStudentFilter->currentText() == "Nome")
+    {
+        search = "select idStudent,nameStudent,registryStudent,courseStudent \
+                    from Students where nameStudent like '%"+ui->lineEditStudentFilter->text()+"%' order by nameStudent";
+    }
+    else if(ui->comboBoxStudentFilter->currentText() == "Matrícula")
+    {
+        search = "select idStudent,nameStudent,registryStudent,courseStudent \
+                    from Students where registryStudent like '%"+ui->lineEditStudentFilter->text()+"%' order by registryStudent";
+    }
+
+    QSqlQuery query;
+
+    query.prepare(search);
+
+    if(query.exec())
+    {
+        int cont = 0;
+        while(query.next())
+        {
+            ui->tableWidgetStudent->insertRow(cont);
+            ui->tableWidgetStudent->setItem(cont,0,new QTableWidgetItem(query.value(0).toString()));
+            ui->tableWidgetStudent->setItem(cont,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidgetStudent->setItem(cont,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidgetStudent->setItem(cont,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidgetStudent->setRowHeight(cont,20);
+            cont++;
+        }
+    }
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::on_pushButtonStudentRefresh_clicked()
+{
+    ui->tableWidgetStudent->reset();
+    CleanStudentTable();
+    RefreshStudentTable();
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::SetStudentValues(Student& student)
+{
+    student.SetName(ui->lineEditStudentName->text());
+    student.SetRegistry(ui->lineEditStudentRegistry->text());
+    student.SetCourse(ui->lineEditStudentCourse->text());
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::InitStudentTable()
+{
+    ui->tableWidgetStudent->setColumnCount(4);
+
+    ui->tableWidgetStudent->setColumnWidth(0,10);
+    ui->tableWidgetStudent->setColumnWidth(1,300);
+    ui->tableWidgetStudent->setColumnWidth(2,300);
+    ui->tableWidgetStudent->setColumnWidth(3,300);
+
+    RefreshStudentTable();
+
+    ui->tableWidgetStudent->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidgetStudent->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetStudent->verticalHeader()->setVisible(false);
+    ui->tableWidgetStudent->setStyleSheet("QTableView {selection-background-color:blue}");
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::RefreshStudentTable()
+{
+    QSqlQuery query;
+    query.prepare("select * from Students");
+
+    if(query.exec())
+    {
+        int cont = 0;
+        while(query.next())
+        {
+            ui->tableWidgetStudent->insertRow(cont);
+            ui->tableWidgetStudent->setItem(cont,0,new QTableWidgetItem(query.value(0).toString()));
+            ui->tableWidgetStudent->setItem(cont,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidgetStudent->setItem(cont,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidgetStudent->setItem(cont,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidgetStudent->setRowHeight(cont,20);
+            cont++;
+        }
+    }
+
+    QStringList cabecalho = {"Id","Nome","Matrícula","Curso"};
+    ui->tableWidgetStudent->setHorizontalHeaderLabels(cabecalho);
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::CleanStudentTable()
+{
+    while (ui->tableWidgetStudent->rowCount()>0)
+    {
+        ui->tableWidgetStudent->removeRow(0);
+    }
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::CleanStudentLines()
+{
+    ui->lineEditStudentName->clear();
+    ui->lineEditStudentRegistry->clear();
+    ui->lineEditStudentCourse->clear();
+    ui->lineEditStudentName->setFocus();
+}
+
+//---------------------------------------------------------------------------------------------
 
