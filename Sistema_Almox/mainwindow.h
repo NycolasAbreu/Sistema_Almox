@@ -5,8 +5,9 @@
 #include <QMessageBox>
 
 #include "database.h"
-#include "message.h"
 #include "inventory.h"
+#include "loan.h"
+#include "message.h"
 #include "student.h"
 
 namespace Ui {
@@ -68,6 +69,8 @@ private slots:
     void on_pushButtonStudentFilter_clicked();
 
     void on_tableWidgetStudent_itemSelectionChanged();
+
+    void on_pushButtonStudentAddLoan_clicked();
 
 private:
     Ui::MainWindow *ui;

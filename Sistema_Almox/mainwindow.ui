@@ -471,7 +471,7 @@ color: rgb(0, 0, 0);</string>
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="movable">
        <bool>false</bool>
@@ -1264,22 +1264,6 @@ background-color:#a1343c; }
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_18">
                  <item>
-                  <spacer name="horizontalSpacer_2">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeType">
-                    <enum>QSizePolicy::Fixed</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item>
                   <widget class="QPushButton" name="pushButtonInvEdit">
                    <property name="autoFillBackground">
                     <bool>false</bool>
@@ -1315,22 +1299,6 @@ background-color: rgb(190, 190, 0);
                      <normaloff>:/new/Icons/Icons/edit.png</normaloff>:/new/Icons/Icons/edit.png</iconset>
                    </property>
                   </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_3">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeType">
-                    <enum>QSizePolicy::Fixed</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
                  </item>
                 </layout>
                </item>
@@ -1994,7 +1962,7 @@ background-color:#a1343c; }
                 </layout>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButtonStudentAdd_2">
+                <widget class="QPushButton" name="pushButtonStudentAddLoan">
                  <property name="styleSheet">
                   <string notr="true">.QPushButton { 
 background-color:#74ad5a;

@@ -436,6 +436,15 @@ void MainWindow::on_pushButtonStudentRefresh_clicked()
 
 //---------------------------------------------------------------------------------------------
 
+void MainWindow::on_pushButtonStudentAddLoan_clicked()
+{
+    Loan l;
+    l.setModal(true);
+    l.exec();
+}
+
+//---------------------------------------------------------------------------------------------
+
 void MainWindow::on_tableWidgetStudent_itemSelectionChanged()
 {
     int id = ui->tableWidgetStudent->item(ui->tableWidgetStudent->currentRow(),0)->text().toInt();

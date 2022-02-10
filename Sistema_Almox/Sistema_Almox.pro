@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     database.cpp \
     inventory.cpp \
+    loan.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -20,12 +21,14 @@ SOURCES += \
 HEADERS += \
     database.h \
     inventory.h \
+    loan.h \
     login.h \
     mainwindow.h \
     message.h \
     student.h
 
 FORMS += \
+    loan.ui \
     login.ui \
     mainwindow.ui
 
