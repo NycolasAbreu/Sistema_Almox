@@ -30,18 +30,21 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 {
     if(index == 0)
     {
+        ui->tableWidgetInv->reset();
         CleanInvTable();
         RefreshInvTable();
     }
 
     else if(index == 1)
     {
+        //ui->tableWidgetInv->reset();
         //CleanTable();
         //RefreshTable();
     }
 
     else if(index == 2)
     {
+        ui->tableWidgetStudent->reset();
         CleanStudentTable();
         RefreshStudentTable();
     }
@@ -128,7 +131,7 @@ void MainWindow::on_pushButtonInvEdit_clicked()
 
     if(line == -1)
     {
-        Message::AboutMessage("Selecione um componente para remover");
+        Message::AboutMessage("Selecione um componente para editar");
         return;
     }
     else
@@ -433,6 +436,21 @@ void MainWindow::on_pushButtonStudentRefresh_clicked()
 
 //---------------------------------------------------------------------------------------------
 
+void MainWindow::on_tableWidgetStudent_itemSelectionChanged()
+{
+    int id = ui->tableWidgetStudent->item(ui->tableWidgetStudent->currentRow(),0)->text().toInt();
+    QSqlQuery query;
+    query.prepare("select * from Students where idStudent="+QString::number(id));
+    if(query.exec())
+    {
+        query.first();
+        ui->labelName->setText(query.value(1).toString());
+        ui->labelRegistry->setText(query.value(2).toString());
+    }
+}
+
+//---------------------------------------------------------------------------------------------
+
 void MainWindow::SetStudentValues(Student& student)
 {
     student.SetName(ui->lineEditStudentName->text());
@@ -506,4 +524,3 @@ void MainWindow::CleanStudentLines()
 }
 
 //---------------------------------------------------------------------------------------------
-

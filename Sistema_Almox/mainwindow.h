@@ -67,6 +67,8 @@ private slots:
 
     void on_pushButtonStudentFilter_clicked();
 
+    void on_tableWidgetStudent_itemSelectionChanged();
+
 private:
     Ui::MainWindow *ui;
 

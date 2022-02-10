@@ -6,5 +6,11 @@
         <file>Icons/people.png</file>
         <file>Icons/shipping.png</file>
         <file>Icons/ifsc.png</file>
+        <file>Icons/search.png</file>
+        <file>Icons/refresh.png</file>
+        <file>Icons/edit.png</file>
+        <file>Icons/add.png</file>
+        <file>Icons/remove.png</file>
+        <file>Icons/check.png</file>
     </qresource>
 </RCC>

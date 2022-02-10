@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1219</width>
-    <height>951</height>
+    <width>1270</width>
+    <height>1008</height>
    </rect>
   </property>
   <property name="palette">
@@ -471,7 +471,7 @@ color: rgb(0, 0, 0);</string>
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <property name="movable">
        <bool>false</bool>
@@ -705,6 +705,19 @@ color: rgb(0, 0, 0);</string>
            <item row="0" column="0">
             <widget class="QLineEdit" name="lineEditInvFilter"/>
            </item>
+           <item row="0" column="2">
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>397</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
            <item row="0" column="1">
             <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="1,2,2">
              <item>
@@ -747,38 +760,45 @@ color: rgb(0, 0, 0);</string>
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonInvFilter">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="styleSheet">
                 <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
                </property>
                <property name="text">
                 <string>Procurar</string>
                </property>
+               <property name="icon">
+                <iconset resource="Resources.qrc">
+                 <normaloff>:/new/Icons/Icons/search.png</normaloff>:/new/Icons/Icons/search.png</iconset>
+               </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButtonInvRefresh">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="styleSheet">
                 <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
                </property>
                <property name="text">
                 <string>Atualizar</string>
                </property>
+               <property name="icon">
+                <iconset resource="Resources.qrc">
+                 <normaloff>:/new/Icons/Icons/refresh.png</normaloff>:/new/Icons/Icons/refresh.png</iconset>
+               </property>
               </widget>
              </item>
             </layout>
-           </item>
-           <item row="0" column="2">
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>397</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
            </item>
           </layout>
          </widget>
@@ -1091,15 +1111,12 @@ color: rgb(0, 0, 0);</string>
                  </item>
                 </layout>
                </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_11">
-              <item>
-               <widget class="QPushButton" name="pushButtonInvAdd">
-                <property name="styleSheet">
-                 <string notr="true">.QPushButton { 
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_17">
+                 <item>
+                  <widget class="QPushButton" name="pushButtonInvAdd">
+                   <property name="styleSheet">
+                    <string notr="true">.QPushButton { 
 background-color:#74ad5a;
 border:1px solid#3b6e22 ; 
 color:#000000; 
@@ -1119,19 +1136,23 @@ background-color:#68a54b; }
 .QPushButton:pressed {
  background-color:#4b7339;
  } </string>
-                </property>
-                <property name="text">
-                 <string>Adicionar</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButtonInvRemove">
-                <property name="autoFillBackground">
-                 <bool>false</bool>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">.QPushButton { 
+                   </property>
+                   <property name="text">
+                    <string>Adicionar</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Resources.qrc">
+                     <normaloff>:/new/Icons/Icons/add.png</normaloff>:/new/Icons/Icons/add.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButtonInvRemove">
+                   <property name="autoFillBackground">
+                    <bool>false</bool>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">.QPushButton { 
 background-color:#cc4245;
 border:1px solid#3b6e22 ; 
 color:#000000; 
@@ -1151,13 +1172,36 @@ background-color:#a1343c; }
 .QPushButton:pressed {
  background-color:#702427;
  } </string>
-                </property>
-                <property name="text">
-                 <string>Remover</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+                   </property>
+                   <property name="text">
+                    <string>Remover</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Resources.qrc">
+                     <normaloff>:/new/Icons/Icons/remove.png</normaloff>:/new/Icons/Icons/remove.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_11"/>
             </item>
             <item>
              <widget class="QGroupBox" name="groupBox_10">
@@ -1217,34 +1261,31 @@ background-color:#a1343c; }
                  </layout>
                 </widget>
                </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_4">
-              <item>
-               <spacer name="horizontalSpacer_2">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButtonInvEdit">
-                <property name="autoFillBackground">
-                 <bool>false</bool>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">.QPushButton { 
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_18">
+                 <item>
+                  <spacer name="horizontalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButtonInvEdit">
+                   <property name="autoFillBackground">
+                    <bool>false</bool>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">.QPushButton { 
 background-color: rgb(234, 234, 0);
 border:1px solid#3b6e22 ; 
 color:#000000; 
@@ -1265,29 +1306,39 @@ background-color: rgb(190, 190, 0);
 .QPushButton:pressed {
 	background-color: rgb(98, 98, 0);
  } </string>
-                </property>
-                <property name="text">
-                 <string>Editar</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_3">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
+                   </property>
+                   <property name="text">
+                    <string>Editar</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Resources.qrc">
+                     <normaloff>:/new/Icons/Icons/edit.png</normaloff>:/new/Icons/Icons/edit.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_4"/>
             </item>
             <item>
              <spacer name="verticalSpacer">
@@ -1319,32 +1370,23 @@ background-color: rgb(190, 190, 0);
        <attribute name="title">
         <string>Empréstimo</string>
        </attribute>
-      </widget>
-      <widget class="QWidget" name="tabStudent">
-       <attribute name="icon">
-        <iconset resource="Resources.qrc">
-         <normaloff>:/new/Icons/Icons/people.png</normaloff>:/new/Icons/Icons/people.png</iconset>
-       </attribute>
-       <attribute name="title">
-        <string>Alunos</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_2">
+       <layout class="QGridLayout" name="gridLayout_7">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBox_11">
+         <widget class="QGroupBox" name="groupBox_12">
           <property name="styleSheet">
            <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
           </property>
           <property name="title">
            <string>Filtrar</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_4">
+          <layout class="QGridLayout" name="gridLayout_5">
            <item row="0" column="0">
-            <widget class="QLineEdit" name="lineEditStudentFilter"/>
+            <widget class="QLineEdit" name="lineEditLoanFilter"/>
            </item>
            <item row="0" column="1">
-            <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1,2,2">
+            <layout class="QHBoxLayout" name="horizontalLayout_20" stretch="1,2,2">
              <item>
-              <widget class="QComboBox" name="comboBoxStudentFilter">
+              <widget class="QComboBox" name="comboBoxLoanFilter">
                <property name="font">
                 <font>
                  <family>MS Shell Dlg 2</family>
@@ -1377,29 +1419,37 @@ background-color: rgb(190, 190, 0);
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButtonStudentFilter">
+              <widget class="QPushButton" name="pushButtonLoanFilter">
                <property name="styleSheet">
                 <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
                </property>
                <property name="text">
                 <string>Procurar</string>
                </property>
+               <property name="icon">
+                <iconset resource="Resources.qrc">
+                 <normaloff>:/new/Icons/Icons/search.png</normaloff>:/new/Icons/Icons/search.png</iconset>
+               </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButtonStudentRefresh">
+              <widget class="QPushButton" name="pushButtonLoanRefresh">
                <property name="styleSheet">
                 <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
                </property>
                <property name="text">
                 <string>Atualizar</string>
                </property>
+               <property name="icon">
+                <iconset resource="Resources.qrc">
+                 <normaloff>:/new/Icons/Icons/refresh.png</normaloff>:/new/Icons/Icons/refresh.png</iconset>
+               </property>
               </widget>
              </item>
             </layout>
            </item>
            <item row="0" column="2">
-            <spacer name="horizontalSpacer_4">
+            <spacer name="horizontalSpacer_5">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -1415,7 +1465,279 @@ background-color: rgb(190, 190, 0);
          </widget>
         </item>
         <item row="1" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_22" stretch="4,0,2">
+         <layout class="QHBoxLayout" name="horizontalLayout_28" stretch="4,0,0">
+          <item>
+           <widget class="QTableWidget" name="tableWidgetLoan"/>
+          </item>
+          <item>
+           <widget class="Line" name="line_4">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_18">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QGroupBox" name="groupBox_34">
+              <property name="font">
+               <font>
+                <family>MS Shell Dlg 2</family>
+                <pointsize>12</pointsize>
+                <weight>9</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
+              <property name="title">
+               <string>Finalizar empréstimo</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_21">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_22">
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_35">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Nome</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_34">
+                    <item>
+                     <widget class="QLabel" name="labelLoanName">
+                      <property name="styleSheet">
+                       <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                      </property>
+                      <property name="text">
+                       <string>Receber da tabela</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_36">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Item</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_35" stretch="0">
+                    <property name="sizeConstraint">
+                     <enum>QLayout::SetDefaultConstraint</enum>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="labelLoanItem">
+                      <property name="styleSheet">
+                       <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                      </property>
+                      <property name="text">
+                       <string>Receber da tabela</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButtonLoanReturned">
+                 <property name="styleSheet">
+                  <string notr="true">.QPushButton { 
+background-color:#74ad5a;
+border:1px solid#3b6e22 ; 
+color:#000000; 
+font-family:Arial;
+font-size:13px;
+font-weight:bold; 
+padding:6px 12px; 
+text-decoration:none; } 
+
+.QPushButton:hover { 
+background-color:#68a54b; } 
+
+.QPushButton:active {
+ position:relative;
+ top:1px; } 
+
+.QPushButton:pressed {
+ background-color:#4b7339;
+ } </string>
+                 </property>
+                 <property name="text">
+                  <string>Finalizar</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="Resources.qrc">
+                   <normaloff>:/new/Icons/Icons/check.png</normaloff>:/new/Icons/Icons/check.png</iconset>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Expanding</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>250</width>
+                <height>13</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_30">
+              <property name="font">
+               <font>
+                <family>MS Shell Dlg 2</family>
+                <pointsize>12</pointsize>
+                <weight>9</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
+              <property name="title">
+               <string>Editar empréstimo</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_19">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_20">
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_31">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Quantidade de itens</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_30">
+                    <item>
+                     <widget class="QLabel" name="labelLoanQuantity">
+                      <property name="styleSheet">
+                       <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                      </property>
+                      <property name="text">
+                       <string>Receber da tabela</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_32">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Quantidade devolvida</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_31" stretch="3">
+                    <property name="sizeConstraint">
+                     <enum>QLayout::SetDefaultConstraint</enum>
+                    </property>
+                    <item>
+                     <widget class="QLineEdit" name="lineEditLoanItemReturned"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QGridLayout" name="gridLayout_6">
+                 <item row="0" column="0">
+                  <widget class="QPushButton" name="pushButtonLoanEdit">
+                   <property name="autoFillBackground">
+                    <bool>false</bool>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">.QPushButton { 
+background-color: rgb(234, 234, 0);
+border:1px solid#3b6e22 ; 
+color:#000000; 
+font-family:Arial;
+font-size:13px;
+font-weight:bold; 
+padding:6px 12px; 
+text-decoration:none; } 
+
+.QPushButton:hover { 
+background-color: rgb(190, 190, 0);
+ } 
+
+.QPushButton:active {
+ position:relative;
+ top:1px; } 
+
+.QPushButton:pressed {
+	background-color: rgb(98, 98, 0);
+ } </string>
+                   </property>
+                   <property name="text">
+                    <string>Editar</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Resources.qrc">
+                     <normaloff>:/new/Icons/Icons/edit.png</normaloff>:/new/Icons/Icons/edit.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_6">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabStudent">
+       <attribute name="icon">
+        <iconset resource="Resources.qrc">
+         <normaloff>:/new/Icons/Icons/people.png</normaloff>:/new/Icons/Icons/people.png</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Alunos</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="1" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_22" stretch="4,0,0">
           <item>
            <widget class="QTableWidget" name="tableWidgetStudent"/>
           </item>
@@ -1501,15 +1823,12 @@ background-color: rgb(190, 190, 0);
                  </item>
                 </layout>
                </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_29">
-              <item>
-               <widget class="QPushButton" name="pushButtonStudentAdd">
-                <property name="styleSheet">
-                 <string notr="true">.QPushButton { 
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                 <item>
+                  <widget class="QPushButton" name="pushButtonStudentAdd">
+                   <property name="styleSheet">
+                    <string notr="true">.QPushButton { 
 background-color:#74ad5a;
 border:1px solid#3b6e22 ; 
 color:#000000; 
@@ -1529,19 +1848,29 @@ background-color:#68a54b; }
 .QPushButton:pressed {
  background-color:#4b7339;
  } </string>
-                </property>
-                <property name="text">
-                 <string>Adicionar</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButtonStudentRemove">
-                <property name="autoFillBackground">
-                 <bool>false</bool>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">.QPushButton { 
+                   </property>
+                   <property name="text">
+                    <string>Adicionar</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Resources.qrc">
+                     <normaloff>:/new/Icons/Icons/add.png</normaloff>:/new/Icons/Icons/add.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>16</width>
+                     <height>16</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButtonStudentRemove">
+                   <property name="autoFillBackground">
+                    <bool>false</bool>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">.QPushButton { 
 background-color:#cc4245;
 border:1px solid#3b6e22 ; 
 color:#000000; 
@@ -1561,13 +1890,23 @@ background-color:#a1343c; }
 .QPushButton:pressed {
  background-color:#702427;
  } </string>
-                </property>
-                <property name="text">
-                 <string>Remover</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+                   </property>
+                   <property name="text">
+                    <string>Remover</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Resources.qrc">
+                     <normaloff>:/new/Icons/Icons/remove.png</normaloff>:/new/Icons/Icons/remove.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_29"/>
             </item>
             <item>
              <spacer name="verticalSpacer_2">
@@ -1585,6 +1924,124 @@ background-color:#a1343c; }
               </property>
              </spacer>
             </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_27">
+              <property name="font">
+               <font>
+                <family>MS Shell Dlg 2</family>
+                <pointsize>12</pointsize>
+                <weight>9</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
+              <property name="title">
+               <string>Adicionar um empréstimo de item</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_16">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_17">
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_28">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Nome</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_25">
+                    <item>
+                     <widget class="QLabel" name="labelName">
+                      <property name="styleSheet">
+                       <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_29">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                   </property>
+                   <property name="title">
+                    <string>Matrícula</string>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_27" stretch="0">
+                    <property name="sizeConstraint">
+                     <enum>QLayout::SetDefaultConstraint</enum>
+                    </property>
+                    <item>
+                     <widget class="QLabel" name="labelRegistry">
+                      <property name="styleSheet">
+                       <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButtonStudentAdd_2">
+                 <property name="styleSheet">
+                  <string notr="true">.QPushButton { 
+background-color:#74ad5a;
+border:1px solid#3b6e22 ; 
+color:#000000; 
+font-family:Arial;
+font-size:13px;
+font-weight:bold; 
+padding:6px 12px; 
+text-decoration:none; } 
+
+.QPushButton:hover { 
+background-color:#68a54b; } 
+
+.QPushButton:active {
+ position:relative;
+ top:1px; } 
+
+.QPushButton:pressed {
+ background-color:#4b7339;
+ } </string>
+                 </property>
+                 <property name="text">
+                  <string>Adicionar empréstimo</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="Resources.qrc">
+                   <normaloff>:/new/Icons/Icons/add.png</normaloff>:/new/Icons/Icons/add.png</iconset>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
            </layout>
           </item>
          </layout>
@@ -1594,6 +2051,114 @@ background-color:#a1343c; }
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_11">
+          <property name="styleSheet">
+           <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+          </property>
+          <property name="title">
+           <string>Filtrar</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0">
+            <widget class="QLineEdit" name="lineEditStudentFilter"/>
+           </item>
+           <item row="0" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1,2,2">
+             <item>
+              <widget class="QComboBox" name="comboBoxStudentFilter">
+               <property name="font">
+                <font>
+                 <family>MS Shell Dlg 2</family>
+                 <pointsize>8</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;
+</string>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Nome</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Matrícula</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonStudentFilter">
+               <property name="styleSheet">
+                <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+               </property>
+               <property name="text">
+                <string>Procurar</string>
+               </property>
+               <property name="icon">
+                <iconset resource="Resources.qrc">
+                 <normaloff>:/new/Icons/Icons/search.png</normaloff>:/new/Icons/Icons/search.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonStudentRefresh">
+               <property name="styleSheet">
+                <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
+               </property>
+               <property name="text">
+                <string>Atualizar</string>
+               </property>
+               <property name="icon">
+                <iconset resource="Resources.qrc">
+                 <normaloff>:/new/Icons/Icons/refresh.png</normaloff>:/new/Icons/Icons/refresh.png</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="2">
+            <spacer name="horizontalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>397</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>
@@ -1607,7 +2172,7 @@ background-color:#a1343c; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1219</width>
+     <width>1270</width>
      <height>20</height>
     </rect>
    </property>
