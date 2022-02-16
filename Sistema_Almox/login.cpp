@@ -10,10 +10,14 @@ login::login(QWidget *parent) :
     this->setWindowTitle("Login");
 }
 
+//---------------------------------------------------------------------------------------------
+
 login::~login()
 {
     delete ui;
 }
+
+//---------------------------------------------------------------------------------------------
 
 void login::on_pushButton_Login_clicked()
 {
@@ -27,10 +31,14 @@ void login::on_pushButton_Login_clicked()
     this->CheckLogin();
 }
 
+//---------------------------------------------------------------------------------------------
+
 void login::on_pushButton_Exit_clicked()
 {
     this->close();
 }
+
+//---------------------------------------------------------------------------------------------
 
 void login::CheckLogin()
 {
@@ -42,6 +50,8 @@ void login::CheckLogin()
 
     this->CheckDataBase(username, password);
 }
+
+//---------------------------------------------------------------------------------------------
 
 void login::CheckDataBase(QString username,QString password)
 {
@@ -58,6 +68,8 @@ void login::CheckDataBase(QString username,QString password)
     }
     this->CleanLines();
 }
+
+//---------------------------------------------------------------------------------------------
 
 void login::CleanLines(){
     ui->lineEdit_Password->clear();

@@ -2,8 +2,9 @@
 
 Student::Student()
 {
-
 }
+
+//---------------------------------------------------------------------------------------------
 
 void Student::SaveStudent(Student& stud)
 {
@@ -22,35 +23,31 @@ void Student::SaveStudent(Student& stud)
     }
 }
 
-//---------------------Sets----------------------------
+//--------------------------------------------Sets---------------------------------------------
 
 void Student::SetName(QString n)
 {
     name = n;
 }
-
 void Student::SetCourse(QString c)
 {
     course = c;
 }
-
 void Student::SetRegistry(QString r)
 {
     registry = r;
 }
 
-//---------------------Gets----------------------------
+//--------------------------------------------Gets---------------------------------------------
 
 QString Student::GetName()
 {
     return name;
 }
-
 QString Student::GetCourse()
 {
     return course;
 }
-
 QString Student::GetRegistry()
 {
     return registry;

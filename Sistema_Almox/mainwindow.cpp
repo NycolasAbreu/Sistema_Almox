@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle("Sistema Almox");
     InitInvTable();
     InitStudentTable();
+    InitLoanTable();
 
     ui->lineEditInvFilter->setFocus();
 }
@@ -37,9 +38,9 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 
     else if(index == 1)
     {
-        //ui->tableWidgetInv->reset();
-        //CleanTable();
-        //RefreshTable();
+        ui->tableWidgetLoan->reset();
+        CleanLoanTable();
+        RefreshLoanTable();
     }
 
     else if(index == 2)
@@ -533,3 +534,75 @@ void MainWindow::CleanStudentLines()
 }
 
 //---------------------------------------------------------------------------------------------
+
+//--------------------------------------------Loan---------------------------------------------
+
+
+void MainWindow::on_pushButtonLoanRefresh_clicked()
+{
+    ui->tableWidgetLoan->reset();
+    CleanLoanTable();
+    RefreshLoanTable();
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::InitLoanTable()
+{
+    ui->tableWidgetLoan->setColumnCount(7);
+
+    ui->tableWidgetLoan->setColumnWidth(0,10);
+    ui->tableWidgetLoan->setColumnWidth(1,230);
+    ui->tableWidgetLoan->setColumnWidth(2,80);
+    ui->tableWidgetLoan->setColumnWidth(3,350);
+    ui->tableWidgetLoan->setColumnWidth(4,70);
+    ui->tableWidgetLoan->setColumnWidth(5,90);
+    ui->tableWidgetLoan->setColumnWidth(6,80);
+
+    RefreshLoanTable();
+
+    ui->tableWidgetLoan->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidgetLoan->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetLoan->verticalHeader()->setVisible(false);
+    ui->tableWidgetLoan->setStyleSheet("QTableView {selection-background-color:blue}");
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::RefreshLoanTable()
+{
+    QSqlQuery query;
+    query.prepare("select * from Loan");
+
+    if(query.exec())
+    {
+        int cont = 0;
+        while(query.next())
+        {
+            ui->tableWidgetLoan->insertRow(cont);
+            ui->tableWidgetLoan->setItem(cont,0,new QTableWidgetItem(query.value(0).toString()));
+            ui->tableWidgetLoan->setItem(cont,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidgetLoan->setItem(cont,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidgetLoan->setItem(cont,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidgetLoan->setItem(cont,4,new QTableWidgetItem(query.value(4).toString()));
+            ui->tableWidgetLoan->setItem(cont,5,new QTableWidgetItem(query.value(5).toString()));
+            ui->tableWidgetLoan->setItem(cont,6,new QTableWidgetItem(query.value(6).toString()));
+            ui->tableWidgetLoan->setRowHeight(cont,20);
+            cont++;
+        }
+    }
+
+    QStringList cabecalho = {"Id","Aluno","Matrícula","Item","Local","Quantidade","Retornado"};
+    ui->tableWidgetLoan->setHorizontalHeaderLabels(cabecalho);
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::CleanLoanTable()
+{
+    while (ui->tableWidgetLoan->rowCount()>0)
+    {
+        ui->tableWidgetLoan->removeRow(0);
+    }
+}
+

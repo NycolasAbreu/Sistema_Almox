@@ -2,8 +2,9 @@
 
 Message::Message()
 {
-
 }
+
+//---------------------------------------------------------------------------------------------
 
 void Message::WarningMessage(QString message){
     QMessageBox msgBox(QMessageBox::Information, "Atenção", message);
@@ -12,12 +13,16 @@ void Message::WarningMessage(QString message){
     msgBox.exec();
 };
 
+//---------------------------------------------------------------------------------------------
+
 void Message::AboutMessage(QString message){
     QMessageBox msgBox(QMessageBox::Information, "Informação", message);
 
     ModifyInterface(msgBox);
     msgBox.exec();
 };
+
+//---------------------------------------------------------------------------------------------
 
 void Message::ModifyInterface(QMessageBox& msgBox){
     //Muda cor do background
