@@ -14,8 +14,6 @@ MainWindow::MainWindow(QWidget *parent) :
     InitInvTable();
     InitStudentTable();
     InitLoanTable();
-
-    ui->lineEditInvFilter->setFocus();
 }
 
 //---------------------------------------------------------------------------------------------
@@ -85,16 +83,13 @@ void MainWindow::on_actionAlunos_triggered()
 
 void MainWindow::on_pushButtonInvAdd_clicked()
 {
-    ui->tableWidgetInv->reset();        //Precisa estar com o foco fora da tabela
+    ui->tableWidgetInv->reset();
 
     Inventory inv;
-
     SetInvValues(inv);
-
     inv.SaveComponent(inv);
 
     CleanInvLines();
-
     CleanInvTable();
     RefreshInvTable();
 }
@@ -180,6 +175,7 @@ void MainWindow::on_pushButtonInvEdit_clicked()
 
 void MainWindow::on_pushButtonInvFilter_clicked()
 {
+    ui->tableWidgetInv->reset();
     CleanInvTable();
 
     QString search;
@@ -348,16 +344,13 @@ void MainWindow::SetInvValues(Inventory& inv)
 
 void MainWindow::on_pushButtonStudentAdd_clicked()
 {
-    ui->tableWidgetStudent->reset();        //Precisa estar com o foco fora da tabela
+    ui->tableWidgetStudent->reset();
 
     Student student;
-
     SetStudentValues(student);
-
     student.SaveStudent(student);
 
     CleanStudentLines();
-
     CleanStudentTable();
     RefreshStudentTable();
 }
@@ -391,6 +384,7 @@ void MainWindow::on_pushButtonStudentRemove_clicked()
 
 void MainWindow::on_pushButtonStudentFilter_clicked()
 {
+    ui->tableWidgetStudent->reset();
     CleanStudentTable();
 
     QString search;
@@ -439,7 +433,20 @@ void MainWindow::on_pushButtonStudentRefresh_clicked()
 
 void MainWindow::on_pushButtonStudentAddLoan_clicked()
 {
-    Loan l;
+    QString name;
+    QString registry;
+
+    int id = ui->tableWidgetStudent->item(ui->tableWidgetStudent->currentRow(),0)->text().toInt();
+    QSqlQuery query;
+    query.prepare("select * from Students where idStudent="+QString::number(id));
+    if(query.exec())
+    {
+        query.first();
+        name = query.value(1).toString();
+        registry = query.value(2).toString();
+    }
+
+    Loan l(nullptr, name, registry);
     l.setModal(true);
     l.exec();
 }
@@ -543,6 +550,22 @@ void MainWindow::on_pushButtonLoanRefresh_clicked()
     ui->tableWidgetLoan->reset();
     CleanLoanTable();
     RefreshLoanTable();
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::on_tableWidgetLoan_itemSelectionChanged()
+{
+    int id = ui->tableWidgetLoan->item(ui->tableWidgetLoan->currentRow(),0)->text().toInt();
+    QSqlQuery query;
+    query.prepare("select * from Loan where idLoan="+QString::number(id));
+    if(query.exec())
+    {
+        query.first();
+        ui->labelLoanName->setText(query.value(1).toString());
+        ui->labelLoanItem->setText(query.value(3).toString());
+        ui->labelLoanQuantity->setText(query.value(5).toString());
+    }
 }
 
 //---------------------------------------------------------------------------------------------

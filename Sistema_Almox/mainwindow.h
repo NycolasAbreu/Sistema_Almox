@@ -76,6 +76,8 @@ private slots:
 
     void on_pushButtonLoanRefresh_clicked();
 
+    void on_tableWidgetLoan_itemSelectionChanged();
+
 private:
     Ui::MainWindow *ui;
 

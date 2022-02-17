@@ -1,14 +1,17 @@
 #include "loan.h"
 #include "ui_loan.h"
 
-Loan::Loan(QWidget *parent) :
+Loan::Loan(QWidget *parent, QString name, QString registry) :
     QDialog(parent),
-    ui(new Ui::Loan)
+    ui(new Ui::Loan),
+    studentName(name),
+    studentRegistry(registry)
 {
     ui->setupUi(this);
 
     setWindowTitle("Empréstimo");
     InitLoanInvTable();
+    AddLabel();
 }
 
 //---------------------------------------------------------------------------------------------
@@ -25,6 +28,23 @@ void Loan::on_pushButtonLoanRefresh_clicked()
     ui->tableWidgetLoanInv->reset();
     CleanLoanInvTable();
     RefreshLoanInvTable();
+}
+
+//---------------------------------------------------------------------------------------------
+
+void Loan::on_tableWidgetLoanInv_itemSelectionChanged()
+{
+    int id = ui->tableWidgetLoanInv->item(ui->tableWidgetLoanInv->currentRow(),0)->text().toInt();
+    QSqlQuery query;
+    query.prepare("select * from Inventory where idItem="+QString::number(id));
+    if(query.exec())
+    {
+        query.first();
+        ui->labelLoanItemName->setText(query.value(1).toString());
+        ui->labelLoanItemValue->setText(query.value(2).toString());
+        ui->labelLoanInvQuantity->setText(query.value(3).toString());
+        ui->labelLoanItemType->setText(query.value(5).toString());
+    }
 }
 
 //---------------------------------------------------------------------------------------------
@@ -89,3 +109,13 @@ void Loan::CleanLoanInvTable()
         ui->tableWidgetLoanInv->removeRow(0);
     }
 }
+
+//---------------------------------------------------------------------------------------------
+
+void Loan::AddLabel()
+{
+    ui->labelLoanStudentName->setText(studentName);
+    ui->labelLoanStudentRegistry->setText(studentRegistry);
+}
+
+
