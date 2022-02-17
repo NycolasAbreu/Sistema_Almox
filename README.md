@@ -40,14 +40,17 @@ O objetivo deste trabalho será o desenvolvimento de um sistema de gestão para 
 - [X] Tela de login.
 - [X] Banco de dados para componentes.
 - [X] Banco de dados para alunos.
-- [ ] Banco de dados para empréstimo.
+- [X] Banco de dados para empréstimo.
 - [X] Tela Login.
 - [X] Tela principal.
 - [X] Tela Estoque.
 - [X] Tela Alunos.
 - [X] Tela Empréstimos.
-- [X] Classe usuário.
-- [X] Classe item.
+- [X] Classe Usuário.
+- [X] Classe Item.
+- [X] Classe Empréstimo.
+- [ ] Proteção dos valores adicionados.
+- [ ] Funcionalidade do empréstimo.
 
 ## Feedback dos técnicos
 
