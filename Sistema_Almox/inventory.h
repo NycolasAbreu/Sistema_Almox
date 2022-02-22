@@ -10,7 +10,7 @@ class Inventory
 public:
     Inventory();
 
-    void SetValue(int v);
+    void SetValue(float v);
     void SetQuantity(int q);
     void SetMinQuantity(int m);
     void SetFilter(QString f);
@@ -21,7 +21,7 @@ public:
     void SetValueMagnitute(QString v);
     void SetvalueType(QString v);
 
-    int GetValue();
+    float GetValue();
     int GetQuantity();
     int GetMinQuantity();
     QString GetFilter();
@@ -36,7 +36,7 @@ public:
 
 private:
 
-    int value;
+    float value;
     int quantity;
     int minQuantity;
     QString filter;

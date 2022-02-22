@@ -328,7 +328,7 @@ void MainWindow::CleanInvLines()
 void MainWindow::SetInvValues(Inventory& inv)
 {
     inv.SetName(ui->comboBoxInvName->currentText());
-    inv.SetValue(ui->lineEditInvValue->text().toInt());
+    inv.SetValue(ui->lineEditInvValue->text().toFloat());
     inv.SetValueMagnitute(ui->comboBoxInvValueMagnitude->currentText());
     inv.SetvalueType(ui->comboBoxInvValueType->currentText());
     inv.SetQuantity(ui->lineEditInvQuantity->text().toInt());
@@ -457,6 +457,10 @@ void MainWindow::on_pushButtonStudentAddLoan_clicked()
     Loan l(nullptr, name, registry);
     l.setModal(true);
     l.exec();
+
+    ui->labelName->setText("");
+    ui->labelRegistry->setText("");
+    ui->tableWidgetStudent->reset();
 }
 
 //---------------------------------------------------------------------------------------------
@@ -562,6 +566,50 @@ void MainWindow::on_pushButtonLoanRefresh_clicked()
 
 //---------------------------------------------------------------------------------------------
 
+void MainWindow::on_pushButtonLoanFilter_clicked()
+{
+    ui->tableWidgetLoan->reset();
+    CleanLoanTable();
+
+    QString search;
+
+    if(ui->comboBoxLoanFilter->currentText() == "Nome")
+    {
+        search = "select idLoan,nameStudent,registryStudent,nameItem,localItem,quantityLoan,returned \
+                    from Loan where nameStudent like '%"+ui->lineEditLoanFilter->text()+"%' order by nameStudent";
+    }
+    else if(ui->comboBoxLoanFilter->currentText() == "Matrícula")
+    {
+        search = "select idLoan,nameStudent,registryStudent,nameItem,localItem,quantityLoan,returned \
+                    from Loan where registryStudent like '%"+ui->lineEditLoanFilter->text()+"%' order by registryStudent";
+    }
+
+    QSqlQuery query;
+
+    query.prepare(search);
+
+    if(query.exec())
+    {
+        int cont = 0;
+        while(query.next())
+        {
+            ui->tableWidgetLoan->insertRow(cont);
+            ui->tableWidgetLoan->setItem(cont,0,new QTableWidgetItem(query.value(0).toString()));
+            ui->tableWidgetLoan->setItem(cont,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidgetLoan->setItem(cont,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidgetLoan->setItem(cont,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidgetLoan->setItem(cont,4,new QTableWidgetItem(query.value(4).toString()));
+            ui->tableWidgetLoan->setItem(cont,5,new QTableWidgetItem(query.value(5).toString()));
+            ui->tableWidgetLoan->setItem(cont,6,new QTableWidgetItem(query.value(6).toString()));
+            ui->tableWidgetLoan->setRowHeight(cont,20);
+            cont++;
+        }
+    }
+
+}
+
+//---------------------------------------------------------------------------------------------
+
 void MainWindow::on_tableWidgetLoan_itemSelectionChanged()
 {
     int id = ui->tableWidgetLoan->item(ui->tableWidgetLoan->currentRow(),0)->text().toInt();
@@ -636,4 +684,3 @@ void MainWindow::CleanLoanTable()
         ui->tableWidgetLoan->removeRow(0);
     }
 }
-

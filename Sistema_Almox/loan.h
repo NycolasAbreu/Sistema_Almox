@@ -24,11 +24,23 @@ private slots:
 
     void on_tableWidgetLoanInv_itemSelectionChanged();
 
+    void on_pushButtonLoanAdd_clicked();
+
 private:
     Ui::Loan *ui;
 
     void RefreshLoanInvTable();
     void CleanLoanInvTable();
+    void SaveLoan();
+
+    int quantity;
+    int idItem;
+    int quantityItem;
+    int minQuantityItem;
+    QString nameItem;
+    QString valueItem;
+    QString typeItem;
+    QString localItem;
 
     QString studentName;
     QString studentRegistry;

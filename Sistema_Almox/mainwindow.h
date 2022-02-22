@@ -78,6 +78,8 @@ private slots:
 
     void on_tableWidgetLoan_itemSelectionChanged();
 
+    void on_pushButtonLoanFilter_clicked();
+
 private:
     Ui::MainWindow *ui;
 

@@ -29,7 +29,7 @@ void Inventory::SaveComponent(Inventory& inv)
 
 //--------------------------------------------Sets---------------------------------------------
 
-void Inventory::SetValue(int v)
+void Inventory::SetValue(float v)
 {
     value = v;
 }
@@ -72,7 +72,7 @@ void Inventory::SetvalueType(QString v)
 
 //--------------------------------------------Gets---------------------------------------------
 
-int Inventory::GetValue()
+float Inventory::GetValue()
 {
     return value;
 }
