@@ -433,10 +433,18 @@ void MainWindow::on_pushButtonStudentRefresh_clicked()
 
 void MainWindow::on_pushButtonStudentAddLoan_clicked()
 {
+    int line = ui->tableWidgetStudent->currentRow();
+
+    if(line == -1)
+    {
+        Message::AboutMessage("Selecione um aluno para adicionar empréstimo");
+        return;
+    }
+
     QString name;
     QString registry;
 
-    int id = ui->tableWidgetStudent->item(ui->tableWidgetStudent->currentRow(),0)->text().toInt();
+    int id = ui->tableWidgetStudent->item(line,0)->text().toInt();
     QSqlQuery query;
     query.prepare("select * from Students where idStudent="+QString::number(id));
     if(query.exec())
