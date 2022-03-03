@@ -154,17 +154,43 @@ void Loan::SaveLoan()
 {
     QSqlQuery query;
 
-    query.prepare("INSERT INTO Loan (nameStudent,registryStudent,nameItem,localItem,quantityLoan)"
-                  "VALUES (:nameStudent, :registryStudent, :nameItem, :localItem, :quantityLoan)");
+    query.prepare("INSERT INTO Loan (nameStudent,registryStudent,idItem,nameItem,localItem,quantityLoan)"
+                  "VALUES (:nameStudent, :registryStudent, :idItem, :nameItem, :localItem, :quantityLoan)");
 
     query.bindValue(":nameStudent", studentName);
     query.bindValue(":registryStudent", studentRegistry);
-    query.bindValue(":nameItem", QString::number(idItem) + " - " + nameItem + " - " + valueItem + " - " + typeItem);
+    query.bindValue(":idItem", idItem);
+    query.bindValue(":nameItem", nameItem + " - " + valueItem + " - " + typeItem);
     query.bindValue(":localItem", localItem);
     query.bindValue(":quantityLoan", quantity);
 
-    if(!query.exec())
+    if(query.exec())
     {
-        Message::WarningMessage("Erro na conexão com o banco de dados");
+        RemoveItemFromInv();
+    }
+    else
+    {
+        Message::WarningMessage("Erro na adição de empréstimo");
     }
 }
+
+//---------------------------------------------------------------------------------------------
+
+void Loan::RemoveItemFromInv()
+{
+    QSqlQuery query;
+    query.prepare("UPDATE Inventory SET quantityItem = quantityItem - "+QString::number(quantity)+" WHERE idItem="+QString::number(idItem));
+
+    if(query.exec())
+    {
+        Message::AboutMessage("Finalizado");
+        quantityItem -= quantity;
+        ui->labelLoanInvQuantity->setText(QString::number(quantityItem));
+    }
+    else
+    {
+        Message::WarningMessage("Não foi possível reduzir a quantidade do item no estoque");
+    }
+}
+
+//---------------------------------------------------------------------------------------------

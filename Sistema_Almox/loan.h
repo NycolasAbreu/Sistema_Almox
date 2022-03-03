@@ -32,6 +32,7 @@ private:
     void RefreshLoanInvTable();
     void CleanLoanInvTable();
     void SaveLoan();
+    void RemoveItemFromInv();
 
     int quantity;
     int idItem;

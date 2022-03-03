@@ -73,12 +73,12 @@ private slots:
 
     void RefreshLoanTable();
     void CleanLoanTable();
+    void ReturnItemToInv(int id, int quantity);
 
     void on_pushButtonLoanRefresh_clicked();
-
     void on_tableWidgetLoan_itemSelectionChanged();
-
     void on_pushButtonLoanFilter_clicked();
+    void on_pushButtonLoanReturned_clicked();
 
 private:
     Ui::MainWindow *ui;

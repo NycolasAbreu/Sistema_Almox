@@ -556,6 +556,37 @@ void MainWindow::CleanStudentLines()
 
 //--------------------------------------------Loan---------------------------------------------
 
+void MainWindow::on_pushButtonLoanReturned_clicked()
+{
+    int line = ui->tableWidgetLoan->currentRow();
+
+    if(line == -1)
+    {
+        Message::AboutMessage("Selecione um empréstimo para finalizar");
+        return;
+    }
+    else
+    {
+        int id = ui->tableWidgetLoan->item(line,0)->text().toInt();
+        int quantity = ui->tableWidgetLoan->item(line,6)->text().toInt();
+        int itemId = ui->tableWidgetLoan->item(line,3)->text().toInt();
+
+        QSqlQuery query;
+        query.prepare("UPDATE Loan SET returned=:returned WHERE idLoan=:id");
+
+        query.bindValue(":returned", "SIM");
+        query.bindValue(":id", id);
+
+        if(query.exec())
+        {
+            ReturnItemToInv(itemId, quantity);
+        }
+    }
+
+    on_pushButtonLoanRefresh_clicked();
+}
+
+//---------------------------------------------------------------------------------------------
 
 void MainWindow::on_pushButtonLoanRefresh_clicked()
 {
@@ -573,15 +604,27 @@ void MainWindow::on_pushButtonLoanFilter_clicked()
 
     QString search;
 
-    if(ui->comboBoxLoanFilter->currentText() == "Nome")
+    if (ui->checkBoxLoanShowAll->isChecked())
     {
-        search = "select idLoan,nameStudent,registryStudent,nameItem,localItem,quantityLoan,returned \
-                    from Loan where nameStudent like '%"+ui->lineEditLoanFilter->text()+"%' order by nameStudent";
+        if(ui->comboBoxLoanFilter->currentText() == "Nome")
+        {
+            search = "select * from Loan where nameStudent like '%"+ui->lineEditLoanFilter->text()+"%' order by nameStudent";
+        }
+        else if(ui->comboBoxLoanFilter->currentText() == "Matrícula")
+        {
+            search = "select * from Loan where registryStudent like '%"+ui->lineEditLoanFilter->text()+"%' order by registryStudent";
+        }
     }
-    else if(ui->comboBoxLoanFilter->currentText() == "Matrícula")
+    else
     {
-        search = "select idLoan,nameStudent,registryStudent,nameItem,localItem,quantityLoan,returned \
-                    from Loan where registryStudent like '%"+ui->lineEditLoanFilter->text()+"%' order by registryStudent";
+        if(ui->comboBoxLoanFilter->currentText() == "Nome")
+        {
+            search = "select * from Loan where nameStudent like '%"+ui->lineEditLoanFilter->text()+"%' and returned like '%NÃO%' order by nameStudent";
+        }
+        else if(ui->comboBoxLoanFilter->currentText() == "Matrícula")
+        {
+            search = "select * from Loan where registryStudent like '%"+ui->lineEditLoanFilter->text()+"%' and returned like '%NÃO%' order by registryStudent";
+        }
     }
 
     QSqlQuery query;
@@ -601,6 +644,7 @@ void MainWindow::on_pushButtonLoanFilter_clicked()
             ui->tableWidgetLoan->setItem(cont,4,new QTableWidgetItem(query.value(4).toString()));
             ui->tableWidgetLoan->setItem(cont,5,new QTableWidgetItem(query.value(5).toString()));
             ui->tableWidgetLoan->setItem(cont,6,new QTableWidgetItem(query.value(6).toString()));
+            ui->tableWidgetLoan->setItem(cont,7,new QTableWidgetItem(query.value(7).toString()));
             ui->tableWidgetLoan->setRowHeight(cont,20);
             cont++;
         }
@@ -619,8 +663,8 @@ void MainWindow::on_tableWidgetLoan_itemSelectionChanged()
     {
         query.first();
         ui->labelLoanName->setText(query.value(1).toString());
-        ui->labelLoanItem->setText(query.value(3).toString());
-        ui->labelLoanQuantity->setText(query.value(5).toString());
+        ui->labelLoanItem->setText(query.value(4).toString());
+        ui->labelLoanQuantity->setText(query.value(6).toString());
     }
 }
 
@@ -628,15 +672,16 @@ void MainWindow::on_tableWidgetLoan_itemSelectionChanged()
 
 void MainWindow::InitLoanTable()
 {
-    ui->tableWidgetLoan->setColumnCount(7);
+    ui->tableWidgetLoan->setColumnCount(8);
 
     ui->tableWidgetLoan->setColumnWidth(0,10);
     ui->tableWidgetLoan->setColumnWidth(1,230);
     ui->tableWidgetLoan->setColumnWidth(2,80);
-    ui->tableWidgetLoan->setColumnWidth(3,350);
-    ui->tableWidgetLoan->setColumnWidth(4,70);
-    ui->tableWidgetLoan->setColumnWidth(5,90);
-    ui->tableWidgetLoan->setColumnWidth(6,80);
+    ui->tableWidgetLoan->setColumnWidth(3,35);
+    ui->tableWidgetLoan->setColumnWidth(4,350);
+    ui->tableWidgetLoan->setColumnWidth(5,70);
+    ui->tableWidgetLoan->setColumnWidth(6,90);
+    ui->tableWidgetLoan->setColumnWidth(7,80);
 
     RefreshLoanTable();
 
@@ -651,7 +696,13 @@ void MainWindow::InitLoanTable()
 void MainWindow::RefreshLoanTable()
 {
     QSqlQuery query;
-    query.prepare("select * from Loan");
+
+    query.prepare("select * from Loan where returned like '%NÃO%' order by nameStudent");;
+
+    if (ui->checkBoxLoanShowAll->isChecked())
+    {
+        query.prepare("select * from Loan");
+    }
 
     if(query.exec())
     {
@@ -666,12 +717,13 @@ void MainWindow::RefreshLoanTable()
             ui->tableWidgetLoan->setItem(cont,4,new QTableWidgetItem(query.value(4).toString()));
             ui->tableWidgetLoan->setItem(cont,5,new QTableWidgetItem(query.value(5).toString()));
             ui->tableWidgetLoan->setItem(cont,6,new QTableWidgetItem(query.value(6).toString()));
+            ui->tableWidgetLoan->setItem(cont,7,new QTableWidgetItem(query.value(7).toString()));
             ui->tableWidgetLoan->setRowHeight(cont,20);
             cont++;
         }
     }
 
-    QStringList cabecalho = {"Id","Aluno","Matrícula","Item","Local","Quantidade","Retornado"};
+    QStringList cabecalho = {"Id","Aluno","Matrícula","ItemId","Item","Local","Quantidade","Retornado"};
     ui->tableWidgetLoan->setHorizontalHeaderLabels(cabecalho);
 }
 
@@ -682,5 +734,22 @@ void MainWindow::CleanLoanTable()
     while (ui->tableWidgetLoan->rowCount()>0)
     {
         ui->tableWidgetLoan->removeRow(0);
+    }
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::ReturnItemToInv(int itemId, int quantity)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE Inventory SET quantityItem = quantityItem + "+QString::number(quantity)+" WHERE idItem="+QString::number(itemId));
+
+    if(query.exec())
+    {
+        Message::AboutMessage("Finalizado");
+    }
+    else
+    {
+        Message::WarningMessage("Não foi possível finalizar");
     }
 }
