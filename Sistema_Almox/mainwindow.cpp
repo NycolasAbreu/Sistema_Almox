@@ -249,6 +249,9 @@ void MainWindow::on_tableWidgetInv_itemSelectionChanged()
 
 void MainWindow::InitInvTable()
 {
+    ui->tableWidgetInv->setSelectionBehavior(QAbstractItemView::SelectItems);
+    ui->tableWidgetInv->setSelectionMode(QAbstractItemView::SingleSelection);
+
     ui->tableWidgetInv->setColumnCount(8);
 
     ui->tableWidgetInv->setColumnWidth(0,10);
@@ -491,6 +494,9 @@ void MainWindow::SetStudentValues(Student& student)
 
 void MainWindow::InitStudentTable()
 {
+    ui->tableWidgetStudent->setSelectionBehavior(QAbstractItemView::SelectItems);
+    ui->tableWidgetStudent->setSelectionMode(QAbstractItemView::SingleSelection);
+
     ui->tableWidgetStudent->setColumnCount(4);
 
     ui->tableWidgetStudent->setColumnWidth(0,10);
@@ -588,6 +594,52 @@ void MainWindow::on_pushButtonLoanReturned_clicked()
 
 //---------------------------------------------------------------------------------------------
 
+void MainWindow::on_pushButtonLoanMore_clicked()
+{
+    int line = ui->tableWidgetLoan->currentRow();
+
+    if(line == -1)
+    {
+        Message::AboutMessage("Selecione um empréstimo para editar");
+        return;
+    }
+    else
+    {
+        int id = ui->tableWidgetLoan->item(line,0)->text().toInt();
+        int quantity = ui->lineEditLoanItemReturned->text().toInt();
+        int itemId = ui->tableWidgetLoan->item(line,3)->text().toInt();
+
+        AddItemToLoan(itemId, quantity, id);
+    }
+
+    on_pushButtonLoanRefresh_clicked();
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::on_pushButtonLoanLess_clicked()
+{
+    int line = ui->tableWidgetLoan->currentRow();
+
+    if(line == -1)
+    {
+        Message::AboutMessage("Selecione um empréstimo para editar");
+        return;
+    }
+    else
+    {
+        int id = ui->tableWidgetLoan->item(line,0)->text().toInt();
+        int quantity = ui->lineEditLoanItemReturned->text().toInt();
+        int itemId = ui->tableWidgetLoan->item(line,3)->text().toInt();
+
+        RemoveItemToLoan(itemId, quantity, id);
+    }
+
+    on_pushButtonLoanRefresh_clicked();
+}
+
+//---------------------------------------------------------------------------------------------
+
 void MainWindow::on_pushButtonLoanRefresh_clicked()
 {
     ui->tableWidgetLoan->reset();
@@ -672,6 +724,9 @@ void MainWindow::on_tableWidgetLoan_itemSelectionChanged()
 
 void MainWindow::InitLoanTable()
 {
+    ui->tableWidgetLoan->setSelectionBehavior(QAbstractItemView::SelectItems);
+    ui->tableWidgetLoan->setSelectionMode(QAbstractItemView::SingleSelection);
+
     ui->tableWidgetLoan->setColumnCount(8);
 
     ui->tableWidgetLoan->setColumnWidth(0,10);
@@ -751,5 +806,47 @@ void MainWindow::ReturnItemToInv(int itemId, int quantity)
     else
     {
         Message::WarningMessage("Não foi possível finalizar");
+    }
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::AddItemToLoan(int itemId, int quantity, int loanId)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE Inventory SET quantityItem = quantityItem - "+QString::number(quantity)+" WHERE idItem="+QString::number(itemId));
+
+    if(query.exec())
+    {
+        query.prepare("UPDATE Loan SET quantityLoan = quantityLoan + "+QString::number(quantity)+" WHERE idLoan="+QString::number(loanId));
+        if(query.exec())
+        {
+            Message::AboutMessage("Finalizado");
+        }
+        else
+        {
+            Message::WarningMessage("Não foi possível finalizar");
+        }
+    }
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::RemoveItemToLoan(int itemId, int quantity, int loanId)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE Inventory SET quantityItem = quantityItem + "+QString::number(quantity)+" WHERE idItem="+QString::number(itemId));
+
+    if(query.exec())
+    {
+        query.prepare("UPDATE Loan SET quantityLoan = quantityLoan - "+QString::number(quantity)+" WHERE idLoan="+QString::number(loanId));
+        if(query.exec())
+        {
+            Message::AboutMessage("Finalizado");
+        }
+        else
+        {
+            Message::WarningMessage("Não foi possível finalizar");
+        }
     }
 }

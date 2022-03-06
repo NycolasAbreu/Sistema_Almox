@@ -81,6 +81,9 @@ void Loan::on_tableWidgetLoanInv_itemSelectionChanged()
 
 void Loan::InitLoanInvTable()
 {
+    ui->tableWidgetLoanInv->setSelectionBehavior(QAbstractItemView::SelectItems);
+    ui->tableWidgetLoanInv->setSelectionMode(QAbstractItemView::SingleSelection);
+
     ui->tableWidgetLoanInv->setColumnCount(8);
 
     ui->tableWidgetLoanInv->setColumnWidth(0,10);
