@@ -5,6 +5,7 @@
 
 int main(int argc, char *argv[])
 {
+    QLocale::setDefault(QLocale(QLocale::English, QLocale::UnitedStates));
     QApplication::setStyle("fusion");
     QApplication a(argc, argv);
 

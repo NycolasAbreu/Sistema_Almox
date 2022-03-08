@@ -32,20 +32,20 @@ public:
     QString GetValueMagnitute();
     QString GetValueType();
 
-    void SaveComponent(Inventory& inv);
+    void SaveComponent();
 
 private:
 
-    float value;
-    int quantity;
-    int minQuantity;
-    QString filter;
-    QString name;
-    QString type;
-    QString local;
-    QString description;
-    QString valueMagnitude;
-    QString valueType;
+    float value = 0;
+    int quantity = 0;
+    int minQuantity = 0;
+    QString filter = "";
+    QString name = "";
+    QString type = "";
+    QString local = "";
+    QString description = "";
+    QString valueMagnitude = "";
+    QString valueType = "";
 };
 
 #endif // INVENTORY_H

@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QDoubleValidator>
+#include <QIntValidator>
 
 #include "database.h"
 #include "inventory.h"
@@ -25,9 +27,12 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void InitInvTab();
     void InitInvTable();
-    void InitStudentTable();
+    void InitLoanTab();
     void InitLoanTable();
+    void InitStudentTab();
+    void InitStudentTable();
 
 private slots:
 
@@ -44,7 +49,7 @@ private slots:
     void CleanInvLines();
     void CleanInvTable();
     void RefreshInvTable();
-    void SetInvValues(Inventory& inv);
+    bool SetInvValues(Inventory& inv);
 
     void on_pushButtonInvAdd_clicked();
     void on_pushButtonInvEdit_clicked();
@@ -52,7 +57,6 @@ private slots:
     void on_pushButtonInvRemove_clicked();
     void on_pushButtonInvRefresh_clicked();
     void on_tableWidgetInv_itemSelectionChanged();
-
 
 //-------------------------------------------Students------------------------------------------
 
@@ -67,7 +71,6 @@ private slots:
     void on_pushButtonStudentRefresh_clicked();
     void on_pushButtonStudentRemove_clicked();
     void on_tableWidgetStudent_itemSelectionChanged();
-
 
 //---------------------------------------------Loan--------------------------------------------
 

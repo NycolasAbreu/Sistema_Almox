@@ -6,20 +6,20 @@ Inventory::Inventory()
 
 //---------------------------------------------------------------------------------------------
 
-void Inventory::SaveComponent(Inventory& inv)
+void Inventory::SaveComponent()
 {
     QSqlQuery query;
 
     query.prepare("INSERT INTO Inventory (nameItem,valueItem,quantityItem,minQuantityItem,typeItem,localItem,descriptionItem)"
                   "VALUES (:nameItem, :valueItem, :quantityItem, :minQuantityItem, :typeItem, :localItem, :descriptionItem)");
 
-    query.bindValue(":nameItem", inv.GetName());
-    query.bindValue(":valueItem", QString::number(inv.GetValue()) + inv.GetValueMagnitute() + inv.GetValueType());
-    query.bindValue(":quantityItem", QString::number(inv.GetQuantity()));
-    query.bindValue(":minQuantityItem", QString::number(inv.GetMinQuantity()));
-    query.bindValue(":typeItem", inv.GetType());
-    query.bindValue(":localItem", inv.GetLocal());
-    query.bindValue(":descriptionItem", inv.GetDescription());
+    query.bindValue(":nameItem", GetName());
+    query.bindValue(":valueItem", QString::number(GetValue()) + GetValueMagnitute() + GetValueType());
+    query.bindValue(":quantityItem", QString::number(GetQuantity()));
+    query.bindValue(":minQuantityItem", QString::number(GetMinQuantity()));
+    query.bindValue(":typeItem", GetType());
+    query.bindValue(":localItem", GetLocal());
+    query.bindValue(":descriptionItem", GetDescription());
 
     if(!query.exec())
     {

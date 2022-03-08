@@ -11,9 +11,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     setWindowTitle("Sistema Almox");
-    InitInvTable();
-    InitStudentTable();
-    InitLoanTable();
+    InitInvTab();
+    InitLoanTab();
+    InitStudentTab();
 }
 
 //---------------------------------------------------------------------------------------------
@@ -84,14 +84,20 @@ void MainWindow::on_actionAlunos_triggered()
 void MainWindow::on_pushButtonInvAdd_clicked()
 {
     ui->tableWidgetInv->reset();
-
     Inventory inv;
-    SetInvValues(inv);
-    inv.SaveComponent(inv);
 
-    CleanInvLines();
-    CleanInvTable();
-    RefreshInvTable();
+    if (SetInvValues(inv))
+    {
+        inv.SaveComponent();
+
+        CleanInvLines();
+        CleanInvTable();
+        RefreshInvTable();
+    }
+    else
+    {
+        Message::AboutMessage("Por favor, preencha os campos necessários");
+    }
 }
 
 //---------------------------------------------------------------------------------------------
@@ -273,6 +279,22 @@ void MainWindow::InitInvTable()
 
 //---------------------------------------------------------------------------------------------
 
+void MainWindow::InitInvTab()
+{
+    InitInvTable();
+
+    QValidator *validatorDouble = new QDoubleValidator(0,9,2,this);
+    QValidator *validatorInt = new QIntValidator(0,999999,this);
+
+    ui->lineEditInvValue->setValidator(validatorDouble);
+    ui->lineEditInvQuantity->setValidator(validatorInt);
+    ui->lineEditInvMinQuantity->setValidator(validatorInt);
+    ui->lineEditEditInvQuantity->setValidator(validatorInt);
+    ui->lineEditEditInvMinQuantity->setValidator(validatorInt);
+}
+
+//---------------------------------------------------------------------------------------------
+
 void MainWindow::RefreshInvTable()
 {
     QSqlQuery query;
@@ -328,17 +350,31 @@ void MainWindow::CleanInvLines()
 
 //---------------------------------------------------------------------------------------------
 
-void MainWindow::SetInvValues(Inventory& inv)
+bool MainWindow::SetInvValues(Inventory& inv)
 {
-    inv.SetName(ui->comboBoxInvName->currentText());
-    inv.SetValue(ui->lineEditInvValue->text().toFloat());
-    inv.SetValueMagnitute(ui->comboBoxInvValueMagnitude->currentText());
-    inv.SetvalueType(ui->comboBoxInvValueType->currentText());
-    inv.SetQuantity(ui->lineEditInvQuantity->text().toInt());
-    inv.SetMinQuantity(ui->lineEditInvMinQuantity->text().toInt());
-    inv.SetLocal(ui->lineEditInvLocal->text());
-    inv.SetDescription(ui->lineEditInvDescription->text());
-    inv.SetType(ui->lineEditInvType->text());
+    bool value = ui->lineEditInvValue->text().isEmpty();
+    bool quantity = ui->lineEditInvQuantity->text().isEmpty();
+    bool minQuantity = ui->lineEditInvMinQuantity->text().isEmpty();
+    bool local = ui->lineEditInvLocal->text().isEmpty();
+    bool type = ui->lineEditInvType->text().isEmpty();
+
+    if (value || quantity || minQuantity || local || type)
+    {
+        return false;
+    }
+    else
+    {
+        inv.SetValue(ui->lineEditInvValue->text().toFloat());
+        inv.SetName(ui->comboBoxInvName->currentText());
+        inv.SetValueMagnitute(ui->comboBoxInvValueMagnitude->currentText());
+        inv.SetvalueType(ui->comboBoxInvValueType->currentText());
+        inv.SetQuantity(ui->lineEditInvQuantity->text().toInt());
+        inv.SetMinQuantity(ui->lineEditInvMinQuantity->text().toInt());
+        inv.SetLocal(ui->lineEditInvLocal->text());
+        inv.SetDescription(ui->lineEditInvDescription->text());
+        inv.SetType(ui->lineEditInvType->text());
+        return true;
+    }
 }
 
 //--------------------------------------------------------------------------------------------
@@ -488,6 +524,16 @@ void MainWindow::SetStudentValues(Student& student)
     student.SetName(ui->lineEditStudentName->text());
     student.SetRegistry(ui->lineEditStudentRegistry->text());
     student.SetCourse(ui->lineEditStudentCourse->text());
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::InitStudentTab()
+{
+    InitStudentTable();
+
+    QValidator *validatorInt = new QIntValidator(0,9999999999,this);
+    ui->lineEditStudentRegistry->setValidator(validatorInt);
 }
 
 //---------------------------------------------------------------------------------------------
@@ -718,6 +764,16 @@ void MainWindow::on_tableWidgetLoan_itemSelectionChanged()
         ui->labelLoanItem->setText(query.value(4).toString());
         ui->labelLoanQuantity->setText(query.value(6).toString());
     }
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::InitLoanTab()
+{
+    InitLoanTable();
+
+    QValidator *validatorInt = new QIntValidator(0,999999,this);
+    ui->lineEditLoanItemReturned->setValidator(validatorInt);
 }
 
 //---------------------------------------------------------------------------------------------
