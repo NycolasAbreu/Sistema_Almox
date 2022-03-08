@@ -129,52 +129,50 @@ void MainWindow::on_pushButtonInvRemove_clicked()
 
 void MainWindow::on_pushButtonInvEdit_clicked()
 {
-    int line = ui->tableWidgetInv->currentRow();
+    bool quantityB = ui->lineEditEditInvQuantity->text().isEmpty();
+    bool minQuantityB = ui->lineEditEditInvMinQuantity->text().isEmpty();
+    bool localB = ui->lineEditEditInvLocal->text().isEmpty();
 
-    if(line == -1)
+    if(quantityB || minQuantityB || localB)
     {
-        Message::AboutMessage("Selecione um componente para editar");
-        return;
+        Message::AboutMessage("Preencha a quantidade que deseja adicionar");
     }
-    else
-    {
-        int id = ui->tableWidgetInv->item(ui->tableWidgetInv->currentRow(),0)->text().toInt();
-        QString name = ui->tableWidgetInv->item(ui->tableWidgetInv->currentRow(),1)->text();
-        QString value = ui->tableWidgetInv->item(ui->tableWidgetInv->currentRow(),2)->text();
-        QString type = ui->tableWidgetInv->item(ui->tableWidgetInv->currentRow(),5)->text();
-        QString description = ui->tableWidgetInv->item(ui->tableWidgetInv->currentRow(),7)->text();
-        QString quantity = ui->lineEditEditInvQuantity->text();
-        QString minQuantity = ui->lineEditEditInvMinQuantity->text();
-        QString local = ui->lineEditEditInvLocal->text();
-
-        ui->tableWidgetInv->reset();
-
-        QSqlQuery query;
-        query.prepare("UPDATE Inventory SET idItem=:id, nameItem=:name, valueItem=:value, quantityItem=:quant,"
-                      " minQuantityItem=:minquant, typeItem=:type, localItem=:local, descriptionItem=:desc WHERE"
-                      " idItem=:id ");
-
-        query.bindValue(":name", name);
-        query.bindValue(":value", value);
-        query.bindValue(":quant", quantity);
-        query.bindValue(":minquant", minQuantity);
-        query.bindValue(":type", type);
-        query.bindValue(":local", local);
-        query.bindValue(":desc", description);
-        query.bindValue(":id", id);
-
-        if(query.exec())
+    else{
+        int line = ui->tableWidgetInv->currentRow();
+        if(line == -1)
         {
-            Message::AboutMessage("Atualizado");
-            CleanInvTable();
-            RefreshInvTable();
+            Message::AboutMessage("Selecione um componente para editar");
+            return;
         }
         else
         {
-            Message::WarningMessage("Não foi possível atualizar");
+            int id = ui->tableWidgetInv->item(ui->tableWidgetInv->currentRow(),0)->text().toInt();
+            QString quantity = ui->lineEditEditInvQuantity->text();
+            QString minQuantity = ui->lineEditEditInvMinQuantity->text();
+            QString local = ui->lineEditEditInvLocal->text();
+
+            ui->tableWidgetInv->reset();
+
+            QSqlQuery query;
+            query.prepare("UPDATE Inventory SET quantityItem=:quant, minQuantityItem=:minquant, localItem=:local WHERE idItem=:id");
+
+            query.bindValue(":quant", quantity);
+            query.bindValue(":minquant", minQuantity);
+            query.bindValue(":local", local);
+            query.bindValue(":id", id);
+
+            if(query.exec())
+            {
+                Message::AboutMessage("Atualizado");
+                CleanInvTable();
+                RefreshInvTable();
+            }
+            else
+            {
+                Message::WarningMessage("Não foi possível atualizar");
+            }
         }
     }
-
 }
 
 //---------------------------------------------------------------------------------------------
@@ -236,7 +234,6 @@ void MainWindow::on_pushButtonInvRefresh_clicked()
 
 //---------------------------------------------------------------------------------------------
 
-
 void MainWindow::on_tableWidgetInv_itemSelectionChanged()
 {
     int id = ui->tableWidgetInv->item(ui->tableWidgetInv->currentRow(),0)->text().toInt();
@@ -248,6 +245,25 @@ void MainWindow::on_tableWidgetInv_itemSelectionChanged()
         ui->lineEditEditInvQuantity->setText(query.value(3).toString());
         ui->lineEditEditInvMinQuantity->setText(query.value(4).toString());
         ui->lineEditEditInvLocal->setText(query.value(6).toString());
+    }
+}
+
+//---------------------------------------------------------------------------------------------
+
+void MainWindow::on_comboBoxInvName_currentIndexChanged(int index)
+{
+    switch(index) {
+    case 0: // Resistor
+        ui->comboBoxInvValueType->setCurrentIndex(1);   // Ohm
+        break;
+    case 1: // Capacitor
+        ui->comboBoxInvValueType->setCurrentIndex(4);   // Faraday
+        break;
+    case 6: // Indutor
+        ui->comboBoxInvValueType->setCurrentIndex(5);   // Henry
+        break;
+    default:
+        ui->comboBoxInvValueType->setCurrentIndex(0);
     }
 }
 
@@ -291,6 +307,7 @@ void MainWindow::InitInvTab()
     ui->lineEditInvMinQuantity->setValidator(validatorInt);
     ui->lineEditEditInvQuantity->setValidator(validatorInt);
     ui->lineEditEditInvMinQuantity->setValidator(validatorInt);
+    ui->comboBoxInvValueType->setCurrentIndex(1);
 }
 
 //---------------------------------------------------------------------------------------------
@@ -384,14 +401,21 @@ bool MainWindow::SetInvValues(Inventory& inv)
 void MainWindow::on_pushButtonStudentAdd_clicked()
 {
     ui->tableWidgetStudent->reset();
-
     Student student;
-    SetStudentValues(student);
-    student.SaveStudent(student);
 
-    CleanStudentLines();
-    CleanStudentTable();
-    RefreshStudentTable();
+    if (SetStudentValues(student))
+    {
+        student.SaveStudent();
+
+        CleanStudentLines();
+        CleanStudentTable();
+        RefreshStudentTable();
+    }
+    else
+    {
+        Message::AboutMessage("Por favor, preencha os campos necessários");
+    }
+
 }
 
 //---------------------------------------------------------------------------------------------
@@ -402,7 +426,7 @@ void MainWindow::on_pushButtonStudentRemove_clicked()
 
     if(line == -1)
     {
-        Message::AboutMessage("Selecione um componente para remover");
+        Message::AboutMessage("Selecione um aluno para remover");
         return;
     }
 
@@ -519,11 +543,23 @@ void MainWindow::on_tableWidgetStudent_itemSelectionChanged()
 
 //---------------------------------------------------------------------------------------------
 
-void MainWindow::SetStudentValues(Student& student)
+bool MainWindow::SetStudentValues(Student& student)
 {
-    student.SetName(ui->lineEditStudentName->text());
-    student.SetRegistry(ui->lineEditStudentRegistry->text());
-    student.SetCourse(ui->lineEditStudentCourse->text());
+    bool name = ui->lineEditStudentName->text().isEmpty();
+    bool registry = ui->lineEditStudentRegistry->text().isEmpty();
+    bool course = ui->lineEditStudentCourse->text().isEmpty();
+
+    if (name || registry || course)
+    {
+        return false;
+    }
+    else
+    {
+        student.SetName(ui->lineEditStudentName->text());
+        student.SetRegistry(ui->lineEditStudentRegistry->text());
+        student.SetCourse(ui->lineEditStudentCourse->text());
+        return true;
+    }
 }
 
 //---------------------------------------------------------------------------------------------
@@ -642,46 +678,56 @@ void MainWindow::on_pushButtonLoanReturned_clicked()
 
 void MainWindow::on_pushButtonLoanMore_clicked()
 {
-    int line = ui->tableWidgetLoan->currentRow();
-
-    if(line == -1)
+    if(ui->lineEditLoanItemReturned->text().isEmpty())
     {
-        Message::AboutMessage("Selecione um empréstimo para editar");
-        return;
+        Message::AboutMessage("Preencha a quantidade que deseja adicionar");
     }
     else
     {
-        int id = ui->tableWidgetLoan->item(line,0)->text().toInt();
-        int quantity = ui->lineEditLoanItemReturned->text().toInt();
-        int itemId = ui->tableWidgetLoan->item(line,3)->text().toInt();
+        int line = ui->tableWidgetLoan->currentRow();
+        if(line == -1)
+        {
+            Message::AboutMessage("Selecione um empréstimo para editar");
+            return;
+        }
+        else
+        {
+            int id = ui->tableWidgetLoan->item(line,0)->text().toInt();
+            int quantity = ui->lineEditLoanItemReturned->text().toInt();
+            int itemId = ui->tableWidgetLoan->item(line,3)->text().toInt();
 
-        AddItemToLoan(itemId, quantity, id);
+            AddItemToLoan(itemId, quantity, id);
+        }
+        on_pushButtonLoanRefresh_clicked();
     }
-
-    on_pushButtonLoanRefresh_clicked();
 }
 
 //---------------------------------------------------------------------------------------------
 
 void MainWindow::on_pushButtonLoanLess_clicked()
 {
-    int line = ui->tableWidgetLoan->currentRow();
-
-    if(line == -1)
+    if(ui->lineEditLoanItemReturned->text().isEmpty())
     {
-        Message::AboutMessage("Selecione um empréstimo para editar");
-        return;
+        Message::AboutMessage("Preencha a quantidade que deseja remover");
     }
     else
     {
-        int id = ui->tableWidgetLoan->item(line,0)->text().toInt();
-        int quantity = ui->lineEditLoanItemReturned->text().toInt();
-        int itemId = ui->tableWidgetLoan->item(line,3)->text().toInt();
+        int line = ui->tableWidgetLoan->currentRow();
+        if(line == -1)
+        {
+            Message::AboutMessage("Selecione um empréstimo para editar");
+            return;
+        }
+        else
+        {
+            int id = ui->tableWidgetLoan->item(line,0)->text().toInt();
+            int quantity = ui->lineEditLoanItemReturned->text().toInt();
+            int itemId = ui->tableWidgetLoan->item(line,3)->text().toInt();
 
-        RemoveItemToLoan(itemId, quantity, id);
+            RemoveItemToLoan(itemId, quantity, id);
+        }
+        on_pushButtonLoanRefresh_clicked();
     }
-
-    on_pushButtonLoanRefresh_clicked();
 }
 
 //---------------------------------------------------------------------------------------------

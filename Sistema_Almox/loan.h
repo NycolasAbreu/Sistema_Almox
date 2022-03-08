@@ -16,14 +16,13 @@ public:
     explicit Loan(QWidget *parent = nullptr, QString name = "", QString registry = "");
     ~Loan();
 
+    void InitLoanInvTab();
     void InitLoanInvTable();
     void AddLabel();
 
 private slots:
     void on_pushButtonLoanRefresh_clicked();
-
     void on_tableWidgetLoanInv_itemSelectionChanged();
-
     void on_pushButtonLoanAdd_clicked();
 
 private:

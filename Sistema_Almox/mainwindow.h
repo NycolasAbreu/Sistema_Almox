@@ -63,7 +63,7 @@ private slots:
     void CleanStudentLines();
     void CleanStudentTable();
     void RefreshStudentTable();
-    void SetStudentValues(Student& student);
+    bool SetStudentValues(Student& student);
 
     void on_pushButtonStudentAdd_clicked();
     void on_pushButtonStudentAddLoan_clicked();
@@ -86,6 +86,8 @@ private slots:
     void on_pushButtonLoanReturned_clicked();
     void on_pushButtonLoanMore_clicked();
     void on_pushButtonLoanLess_clicked();
+
+    void on_comboBoxInvName_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;

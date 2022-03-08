@@ -10,7 +10,7 @@ Loan::Loan(QWidget *parent, QString name, QString registry) :
     ui->setupUi(this);
 
     setWindowTitle("Empréstimo");
-    InitLoanInvTable();
+    InitLoanInvTab();
     AddLabel();
 }
 
@@ -25,19 +25,25 @@ Loan::~Loan()
 
 void Loan::on_pushButtonLoanAdd_clicked()
 {
-    int line = ui->tableWidgetLoanInv->currentRow();
-
-    if(line == -1)
+    if(ui->lineEditLoanQuatity->text().isEmpty() || ui->lineEditLoanQuatity->text().toInt() == 0)
     {
-        Message::AboutMessage("Selecione um item para adicionar");
-        return;
+        Message::AboutMessage("Preencha a quantidade que deseja adicionar");
     }
-
+    else
+    {
+        int line = ui->tableWidgetLoanInv->currentRow();
+        if(line == -1)
+        {
+            Message::AboutMessage("Selecione um item para adicionar");
+            return;
+        }
+        else
+        {
+            quantity = ui->lineEditLoanQuatity->text().toInt();
+            SaveLoan();
+        }
+    }
     ui->tableWidgetLoanInv->reset();
-
-    quantity = ui->lineEditLoanQuatity->text().toInt();
-    SaveLoan();
-
     CleanLoanInvTable();
     RefreshLoanInvTable();
     ui->lineEditLoanQuatity->clear();
@@ -101,6 +107,15 @@ void Loan::InitLoanInvTable()
     ui->tableWidgetLoanInv->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidgetLoanInv->verticalHeader()->setVisible(false);
     ui->tableWidgetLoanInv->setStyleSheet("QTableView {selection-background-color:blue}");
+}
+
+//---------------------------------------------------------------------------------------------
+
+void Loan::InitLoanInvTab()
+{
+    InitLoanInvTable();
+    QValidator *validatorInt = new QIntValidator(0,999999,this);
+    ui->lineEditLoanQuatity->setValidator(validatorInt);
 }
 
 //---------------------------------------------------------------------------------------------

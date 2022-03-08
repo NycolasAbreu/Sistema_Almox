@@ -18,7 +18,7 @@ public:
     QString GetRegistry();
     QString GetCourse();
 
-    void SaveStudent(Student& stud);
+    void SaveStudent();
 
     private:
 

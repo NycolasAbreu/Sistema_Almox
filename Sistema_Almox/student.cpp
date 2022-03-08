@@ -6,16 +6,16 @@ Student::Student()
 
 //---------------------------------------------------------------------------------------------
 
-void Student::SaveStudent(Student& stud)
+void Student::SaveStudent()
 {
     QSqlQuery query;
 
     query.prepare("INSERT INTO Students (nameStudent,registryStudent,courseStudent)"
                   "VALUES (:nameStudent, :registryStudent, :courseStudent)");
 
-    query.bindValue(":nameStudent", stud.GetName());
-    query.bindValue(":registryStudent", stud.GetRegistry());
-    query.bindValue(":courseStudent", stud.GetCourse());
+    query.bindValue(":nameStudent", GetName());
+    query.bindValue(":registryStudent", GetRegistry());
+    query.bindValue(":courseStudent", GetCourse());
 
     if(!query.exec())
     {
