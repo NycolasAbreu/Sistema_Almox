@@ -200,13 +200,14 @@ void MainWindow::on_pushButtonInvFilter_clicked()
                     from Inventory where valueItem like '%"+ui->lineEditInvFilter->text()+"%' order by valueItem";
     }
 
-    int cont = 0;
+
     QSqlQuery query;
 
     query.prepare(search);
 
     if(query.exec())
     {
+        int cont = 0;
         while(query.next()){
             ui->tableWidgetInv->insertRow(cont);
             ui->tableWidgetInv->setItem(cont,0,new QTableWidgetItem(query.value(0).toString()));
@@ -695,6 +696,20 @@ void MainWindow::on_pushButtonLoanMore_clicked()
             int id = ui->tableWidgetLoan->item(line,0)->text().toInt();
             int quantity = ui->lineEditLoanItemReturned->text().toInt();
             int itemId = ui->tableWidgetLoan->item(line,3)->text().toInt();
+            int itemQuantity = 0;
+
+            QSqlQuery query;
+            query.prepare("select * from Inventory where idItem="+QString::number(itemId));
+            if(query.exec())
+            {
+                query.first();
+                itemQuantity = query.value(3).toInt();
+            }
+            if (quantity == 0 || itemQuantity == 0 || (itemQuantity - quantity < 0))
+            {
+                Message::AboutMessage("Não é possível fazer esta operação");
+                return;
+            }
 
             AddItemToLoan(itemId, quantity, id);
         }
@@ -723,6 +738,20 @@ void MainWindow::on_pushButtonLoanLess_clicked()
             int id = ui->tableWidgetLoan->item(line,0)->text().toInt();
             int quantity = ui->lineEditLoanItemReturned->text().toInt();
             int itemId = ui->tableWidgetLoan->item(line,3)->text().toInt();
+            int loanQuantity = 0;
+
+            QSqlQuery query;
+            query.prepare("select * from Loan where idLoan="+QString::number(id));
+            if(query.exec())
+            {
+                query.first();
+                loanQuantity = query.value(6).toInt();
+            }
+            if (quantity == 0 || loanQuantity == 0 || (loanQuantity - quantity < 0))
+            {
+                Message::AboutMessage("Não é possível fazer esta operação");
+                return;
+            }
 
             RemoveItemToLoan(itemId, quantity, id);
         }

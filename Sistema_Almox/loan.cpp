@@ -25,7 +25,7 @@ Loan::~Loan()
 
 void Loan::on_pushButtonLoanAdd_clicked()
 {
-    if(ui->lineEditLoanQuatity->text().isEmpty() || ui->lineEditLoanQuatity->text().toInt() == 0)
+    if(ui->lineEditLoanQuantity->text().isEmpty())
     {
         Message::AboutMessage("Preencha a quantidade que deseja adicionar");
     }
@@ -39,14 +39,18 @@ void Loan::on_pushButtonLoanAdd_clicked()
         }
         else
         {
-            quantity = ui->lineEditLoanQuatity->text().toInt();
+            quantity = ui->lineEditLoanQuantity->text().toInt();
+            if(quantity == 0 || quantityItem == 0 || (quantityItem - quantity < 0))
+            {
+                Message::AboutMessage("Não é possível fazer esta operação");
+                return;
+            }
             SaveLoan();
         }
     }
-    ui->tableWidgetLoanInv->reset();
-    CleanLoanInvTable();
-    RefreshLoanInvTable();
-    ui->lineEditLoanQuatity->clear();
+
+    on_pushButtonLoanRefresh_clicked();
+    ui->lineEditLoanQuantity->clear();
 }
 
 //---------------------------------------------------------------------------------------------
@@ -62,17 +66,15 @@ void Loan::on_pushButtonLoanRefresh_clicked()
 
 void Loan::on_tableWidgetLoanInv_itemSelectionChanged()
 {
-    int id = ui->tableWidgetLoanInv->item(ui->tableWidgetLoanInv->currentRow(),0)->text().toInt();
+    idItem = ui->tableWidgetLoanInv->item(ui->tableWidgetLoanInv->currentRow(),0)->text().toInt();
     QSqlQuery query;
-    query.prepare("select * from Inventory where idItem="+QString::number(id));
+    query.prepare("select * from Inventory where idItem="+QString::number(idItem));
     if(query.exec())
     {
         query.first();
-        idItem = query.value(0).toInt();
         nameItem = query.value(1).toString();
         valueItem = query.value(2).toString();
         quantityItem = query.value(3).toInt();
-        minQuantityItem = query.value(4).toInt();
         typeItem = query.value(5).toString();
         localItem = query.value(6).toString();
 
@@ -80,6 +82,56 @@ void Loan::on_tableWidgetLoanInv_itemSelectionChanged()
         ui->labelLoanItemValue->setText(valueItem);
         ui->labelLoanInvQuantity->setText(QString::number(quantityItem));
         ui->labelLoanItemType->setText(typeItem);
+        ui->labelLoanItemLocal->setText(localItem);
+    }
+}
+
+//---------------------------------------------------------------------------------------------
+
+void Loan::on_pushButtonLoanFilter_clicked()
+{
+    ui->tableWidgetLoanInv->reset();
+    CleanLoanInvTable();
+
+    QString search;
+
+    if(ui->comboBoxLoanFilter->currentText() == "Nome")
+    {
+        search = "select idItem,nameItem,valueItem,quantityItem,minQuantityItem,typeItem,localItem,descriptionItem \
+                    from Inventory where nameItem like '%"+ui->lineEditLoanFilter->text()+"%' order by nameItem";
+    }
+    else if(ui->comboBoxLoanFilter->currentText() == "Tipo")
+    {
+        search = "select idItem,nameItem,valueItem,quantityItem,minQuantityItem,typeItem,localItem,descriptionItem \
+                    from Inventory where typeItem like '%"+ui->lineEditLoanFilter->text()+"%' order by typeItem";
+    }
+    else if(ui->comboBoxLoanFilter->currentText() == "Valor")
+    {
+        search = "select idItem,nameItem,valueItem,quantityItem,minQuantityItem,typeItem,localItem,descriptionItem \
+                    from Inventory where valueItem like '%"+ui->lineEditLoanFilter->text()+"%' order by valueItem";
+    }
+
+    QSqlQuery query;
+
+    query.prepare(search);
+
+    if(query.exec())
+    {
+        int cont = 0;
+        while(query.next())
+        {
+            ui->tableWidgetLoanInv->insertRow(cont);
+            ui->tableWidgetLoanInv->setItem(cont,0,new QTableWidgetItem(query.value(0).toString()));
+            ui->tableWidgetLoanInv->setItem(cont,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidgetLoanInv->setItem(cont,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidgetLoanInv->setItem(cont,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidgetLoanInv->setItem(cont,4,new QTableWidgetItem(query.value(4).toString()));
+            ui->tableWidgetLoanInv->setItem(cont,5,new QTableWidgetItem(query.value(5).toString()));
+            ui->tableWidgetLoanInv->setItem(cont,6,new QTableWidgetItem(query.value(6).toString()));
+            ui->tableWidgetLoanInv->setItem(cont,7,new QTableWidgetItem(query.value(7).toString()));
+            ui->tableWidgetLoanInv->setRowHeight(cont,20);
+            cont++;
+        }
     }
 }
 
@@ -115,7 +167,7 @@ void Loan::InitLoanInvTab()
 {
     InitLoanInvTable();
     QValidator *validatorInt = new QIntValidator(0,999999,this);
-    ui->lineEditLoanQuatity->setValidator(validatorInt);
+    ui->lineEditLoanQuantity->setValidator(validatorInt);
 }
 
 //---------------------------------------------------------------------------------------------

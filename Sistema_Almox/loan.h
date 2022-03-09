@@ -25,6 +25,8 @@ private slots:
     void on_tableWidgetLoanInv_itemSelectionChanged();
     void on_pushButtonLoanAdd_clicked();
 
+    void on_pushButtonLoanFilter_clicked();
+
 private:
     Ui::Loan *ui;
 
