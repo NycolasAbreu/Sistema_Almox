@@ -49,7 +49,7 @@ O objetivo deste trabalho será o desenvolvimento de um sistema de gestão para 
 - [X] Classe Item.
 - [X] Classe Empréstimo.
 - [X] Funcionalidade do empréstimo.
-- [ ] Proteção dos valores adicionados.
+- [X] Proteção dos valores adicionados.
 
 ## Feedback dos técnicos
 
