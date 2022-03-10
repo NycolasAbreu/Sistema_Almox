@@ -33,14 +33,12 @@ void MainWindow::on_tabWidget_currentChanged(int index)
         CleanInvTable();
         RefreshInvTable();
     }
-
     else if(index == 1)
     {
         ui->tableWidgetLoan->reset();
         CleanLoanTable();
         RefreshLoanTable();
     }
-
     else if(index == 2)
     {
         ui->tableWidgetStudent->reset();
@@ -313,7 +311,8 @@ void MainWindow::InitInvTab()
 
 //---------------------------------------------------------------------------------------------
 
-void MainWindow::RefreshInvTable()
+void
+MainWindow::RefreshInvTable()
 {
     QSqlQuery query;
     query.prepare("select * from Inventory");
