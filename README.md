@@ -98,6 +98,39 @@ Cada bloco de código está separado de acordo com sua respectiva parte, utiliza
 
 ## Funcionamento 
 
-Primeiramente temos uma tela de login para proteção dos dados.
+- Primeiramente temos uma tela de login para proteção dos dados.
 
+<p align="center">
+<img src="img/login.png" alt="login" width="300"/>
+</p>
 
+- A seguir temos a tela de estoque, onde é possível adicionar, remover e editar os itens em estoque.
+
+<p align="center">
+<img src="img/estoque.png" alt="estoque" width="700"/>
+</p>
+
+- Para adicionar um aluno deve-se acessar a tela de alunos, onde é possível também lançar um empréstimo para o aluno selecionado.
+
+<p align="center">
+<img src="img/alunos.png" alt="alunos" width="700"/>
+</p>
+
+- Ao selecionar um aluno e lançar um empréstimo, será aberta uma nova janela para selecionar os itens que serão emprestados.
+
+<p align="center">
+<img src="img/adicionar empréstimo.png" alt="add empréstimo" width="700"/>
+</p>
+
+- Para ter o controle de todos os empréstimos e de cada aluno separado basta abrir a janela de empréstimos, onde pode-se entregar e receber itens ou finalizar o empréstimo.
+
+<p align="center">
+<img src="img/empréstimo.png" alt="empréstimo" width="700"/>
+</p>
+
+Todas as janelas possuem proteção de entrada de dados, e alertas de mensagem quando alto estiver fora dos padrões estabelecidos.
+
+## Futuro do trabalho
+
+Primeiramente é necessário uma melhora no banco de dados, que está com duplicação de informação entre as tabelas, podendo acarretar um erro de sincronização caso algum item ou aluno seja removido de maneira indevida.
+Será necessário implementar a funcionalidade requerida pelos técnicos do almoxarifado, crinado uma espécie de quarentena de itens, agrupando pelos seus tipos, simplificando o momento de entrega.
