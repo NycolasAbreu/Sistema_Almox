@@ -96,6 +96,12 @@ Utilizando o conhecimento adquirido em Programação Orientada a Objetos foi pos
 O código foi separado em três partes principais, a parte de cadastro e edição de itens, em seguida a parte de cadastro e edição de alunos e por fim a parte de inserção e remoção de empréstimos.
 Cada bloco de código está separado de acordo com sua respectiva parte, utilizando o método de clean code, onde não é utilizado comentários para fazer a explicação do seu funcionamento, já que o nome do método ou variável é auto explicativo.
 
+Para a criação das janelas e implementação do código foi utilizado a IDE Qt creator, pois gera uma facilidade maior no momento de organizar os elementos na janela, além de seus diversos atalhos para edição.
+
+<p align="center">
+<img src="img/qt creator.png" alt="creator" width="700"/>
+</p>
+
 ## Funcionamento 
 
 - Primeiramente temos uma tela de login para proteção dos dados.
